@@ -8,6 +8,9 @@ class MY_Controller extends CI_Controller
 	{
         parent::__construct();
 
+		$this->load->library('session');
+		$this->lang->load('bamboo_lang');
+
 		// The cents separater is a hidden config variable.  If it isn't available default to '.'
 		if ($this->config->item('currency_decimal') == '')
 		{

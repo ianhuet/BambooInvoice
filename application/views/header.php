@@ -53,28 +53,28 @@ echo ': '.$page_title;
 <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>css/lightbox.css" />
 <link type="text/css" rel="stylesheet" media="print" href="<?php echo base_url()?>css/bamboo_print.css" />
 <script type="text/javascript">
-base_url = "<?php echo site_url();?>/";
-base_url_no_index = "<?php echo base_url();?>";
-bi_currency_symbol = new String("<?php echo str_replace('&#0128;', '€', $this->settings_model->get_setting('currency_symbol'));?>");
-lang_invoice_date_issued = new String("<?php echo ($this->lang->line('invoice_date_issued'));?> ");
-lang_invoice_change = new String("<?php echo ($this->lang->line('actions_change'));?>");
-lang_amount_error = new String("<?php echo ($this->lang->line('invoice_amount_error'));?>");
-lang_delete = new String("<?php echo ($this->lang->line('actions_delete'));?>");
-lang_edit = new String("<?php echo ($this->lang->line('actions_edit'));?>");
-lang_numbers_only = new String("<?php echo ($this->lang->line('invoice_amount_numbers_only'));?>");
-lang_field_required = new String("<?php echo ($this->lang->line('error_field_required'));?>");
-lang_clients_contact_add = new String("<?php echo ($this->lang->line('clients_contact_add'));?>");
-lang_error_email_recipients = new String("<?php echo ($this->lang->line('error_email_recipients'));?>");
-lang_error_login_username = new String("<?php echo ($this->lang->line('error_login_username'));?>");
-lang_error_login_password = new String("<?php echo ($this->lang->line('error_login_password'));?>");
-lang_invoice = new String("<?php echo ($this->lang->line('invoice_invoice'));?>");
-lang_client_name = new String("<?php echo ($this->lang->line('clients_name'));?>");
-lang_amount = new String("<?php echo ($this->lang->line('invoice_amount'));?>");
-lang_status = new String("<?php echo ($this->lang->line('invoice_status'));?>");
-lang_quantity = new String("<?php echo ($this->lang->line('invoice_quantity'));?>");
-lang_work_description = new String("<?php echo ($this->lang->line('invoice_work_description'));?>");
-lang_taxable = new String("<?php echo ($this->lang->line('invoice_taxable'));?>");
-lang_amount = new String("<?php echo ($this->lang->line('invoice_amount'));?>");
+	base_url = "<?php echo site_url();?>/";
+	base_url_no_index = "<?php echo base_url();?>";
+	bi_currency_symbol = new String("<?php echo str_replace('&#0128;', '€', $this->settings_model->get_setting('currency_symbol'));?>");
+	lang_invoice_date_issued = new String("<?php echo ($this->lang->line('invoice_date_issued'));?> ");
+	lang_invoice_change = new String("<?php echo ($this->lang->line('actions_change'));?>");
+	lang_amount_error = new String("<?php echo ($this->lang->line('invoice_amount_error'));?>");
+	lang_delete = new String("<?php echo ($this->lang->line('actions_delete'));?>");
+	lang_edit = new String("<?php echo ($this->lang->line('actions_edit'));?>");
+	lang_numbers_only = new String("<?php echo ($this->lang->line('invoice_amount_numbers_only'));?>");
+	lang_field_required = new String("<?php echo ($this->lang->line('error_field_required'));?>");
+	lang_clients_contact_add = new String("<?php echo ($this->lang->line('clients_contact_add'));?>");
+	lang_error_email_recipients = new String("<?php echo ($this->lang->line('error_email_recipients'));?>");
+	lang_error_login_username = new String("<?php echo ($this->lang->line('error_login_username'));?>");
+	lang_error_login_password = new String("<?php echo ($this->lang->line('error_login_password'));?>");
+	lang_invoice = new String("<?php echo ($this->lang->line('invoice_invoice'));?>");
+	lang_client_name = new String("<?php echo ($this->lang->line('clients_name'));?>");
+	lang_amount = new String("<?php echo ($this->lang->line('invoice_amount'));?>");
+	lang_status = new String("<?php echo ($this->lang->line('invoice_status'));?>");
+	lang_quantity = new String("<?php echo ($this->lang->line('invoice_quantity'));?>");
+	lang_work_description = new String("<?php echo ($this->lang->line('invoice_work_description'));?>");
+	lang_taxable = new String("<?php echo ($this->lang->line('invoice_taxable'));?>");
+	lang_amount = new String("<?php echo ($this->lang->line('invoice_amount'));?>");
 </script>
 <?php
 	if (isset($extraHeadContent)) {
