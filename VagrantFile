@@ -1,0 +1,112 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "forwarded_port", guest: 9999, host: 9999
+  config.vm.synced_folder ".", "/vagrant", owner: "www-data", group: "www-data", mount_options: ["dmode=777", "fmode=666"]
+ 
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "2048"
+  end
+      
+  config.vm.provision "shell", inline: <<-SHELL
+    echo '======================================='
+    echo '<< update packages >>'
+    echo '======================================='
+    sudo apt-get update
+
+    echo '======================================='
+    echo '<< installing Base packages >>'
+    echo '======================================='
+    sudo apt-get install -y zip unzip
+
+    echo '======================================='
+    echo '<< installing Git >>'
+    echo '======================================='
+    sudo apt-get install -y git
+
+
+
+
+    echo '======================================='
+    echo '<< installing Apache >>'
+    echo '======================================='
+    sudo apt-get install -y apache2
+
+    echo '======================================='
+    echo '<< installing MySQL >>'
+    echo '======================================='
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
+    sudo apt-get install -y mysql-server
+    sudo apt-get install -y mysql-client
+
+    echo '======================================='
+    echo '<< installing php + modules >>'
+    echo '======================================='
+    sudo apt-get install -y php7.0 php7.0-fpm
+    sudo apt-get install -y php7.0-mysql
+    sudo apt-get install -y mcrypt php7.0-mcrypt
+    sudo apt-get install -y php7.0-cli php7.0-curl php7.0-mbstring php7.0-xml php7.0-mysql
+    sudo apt-get install -y php7.0-json php7.0-cgi php7.0-gd php-imagick php7.0-bz2 php7.0-zip
+
+    # Trigger changes in apache
+    a2enconf php7.0-fpm
+    sudo service apache2 reload
+
+    echo '======================================='
+    echo '<< installing dialog >>'
+    echo '======================================='
+    sudo apt-get install -y dialog
+    sudo apt-get install -y pv
+    
+    echo '======================================='
+    echo '<< installing composer >>'
+    echo '======================================='    
+    curl -s https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+
+    echo '======================================='
+    echo '<< initialising MySQL DB >>'
+    echo '======================================='
+    mysql -u root -ppassword -e 'CREATE DATABASE bamboo'
+    mysql -u root -ppassword -e "grant all privileges on bamboo.* to 'bamboo'@'localhost' IDENTIFIED BY 'bamboo'"
+
+    echo '======================================='    
+    echo '<< enable mod rewrite >>'
+    echo '======================================='
+    a2enmod rewrite
+    
+    echo '======================================='
+    echo "<< Allowing Apache override to all >>"
+    echo '======================================='
+    sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+
+    echo '======================================='
+    echo "<< Apache running on port 9999 >>"
+    echo '======================================='
+    sed -i "s/Listen 80/Listen 9999/g" /etc/apache2/ports.conf
+    sed -i "s/:80/:9999/g" /etc/apache2/sites-enabled/000-default.conf
+
+
+    echo '======================================='
+    echo "<< Setting document root to public directory >>"
+    echo '======================================='
+    rm -rf /var/www/html
+    ln -fs /vagrant /var/www/html
+
+    echo '======================================='
+    echo "<< Turn on php errors >>"
+    echo '======================================='
+    # sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/apache2/php.ini
+    # sed -i "s/display_errors = .*/display_errors = On/" /etc/php/apache2/php.ini
+
+    echo '======================================='
+    echo "<< Restarting Apache >>"
+    echo '======================================='
+    service apache2 restart
+    
+  SHELL
+end
