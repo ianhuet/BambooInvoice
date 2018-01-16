@@ -9,6 +9,7 @@ class Login extends MY_Controller {
 
 		$this->load->model('settings_model', '', TRUE);
 		$this->load->helper('string');
+		$this->load->helper('form');
 		$this->load->library('encrypt');
 		$this->load->library('email');
 	}
