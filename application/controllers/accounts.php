@@ -108,7 +108,7 @@ class Accounts extends MY_Controller {
 		$rules['country'] 		= 'trim|htmlspecialchars|max_length[25]';
 		$rules['postal_code'] 	= 'trim|htmlspecialchars|max_length[10]';
 		$rules['tax_status'] 	= 'trim|htmlspecialchars|exact_length[1]|numeric|required';
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['clientName'] 	= $this->lang->line('clients_name');
 		$fields['website'] 		= $this->lang->line('clients_website');
@@ -119,9 +119,9 @@ class Accounts extends MY_Controller {
 		$fields['country'] 		= $this->lang->line('clients_country');
 		$fields['postal_code'] 	= $this->lang->line('clients_postal');
 		$fields['tax_status'] 	= $this->lang->line('invoice_tax_status');
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		$this->validation->set_error_delimiters('<span class="error">', '</span>');
+		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 
 	// --------------------------------------------------------------------
@@ -134,7 +134,7 @@ class Accounts extends MY_Controller {
 		$rules['email'] 		= 'trim|required|htmlspecialchars|max_length[127]|valid_email';
 		$rules['phone'] 		= 'trim|htmlspecialchars|max_length[20]';
 		$rules['title'] 		= 'trim|htmlspecialchars';
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['client_id'] 	= $this->lang->line('clients_id');
 		$fields['first_name'] 	= $this->lang->line('clients_first_name');
@@ -142,8 +142,8 @@ class Accounts extends MY_Controller {
 		$fields['email'] 		= $this->lang->line('clients_email');
 		$fields['phone'] 		= $this->lang->line('clients_phone');
 		$fields['title'] 		= $this->lang->line('clients_title');
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		$this->validation->set_error_delimiters('<span class="error">', '</span>');
+		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 }

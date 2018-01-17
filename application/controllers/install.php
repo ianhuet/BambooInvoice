@@ -28,23 +28,23 @@ class Install  extends MY_Controller {
 		}
 
 		$this->load->helper('form', 'url');
-		$this->load->library('validation');
+		$this->load->library('form_validation');
 
 		$rules['login_username']	= 'required|valid_email';
 		$rules['login_password']	= 'required|matches[login_password_confirm]';
 		$rules['login_password_confirm'] = 'required';
 		$rules['primary_contact']	= 'required';
 
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['login_username']	= $this->lang->line('login_username');
 		$fields['login_password']	= $this->lang->line('login_password');
 		$fields['login_password_confirm'] = $this->lang->line('login_password_confirm');
 		$fields['primary_contact']	= $this->lang->line('settings_primary_contact');
 
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			$vars['message'] = '';
 			$vars['page_title'] = $this->lang->line('install_install');

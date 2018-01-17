@@ -6,7 +6,7 @@ class Clientcontacts extends MY_Controller {
 	{
 		parent::__construct();
 
-		$this->load->library('validation');
+		$this->load->library('form_validation');
 		$this->load->helper('ajax');
 		$this->load->model('clientcontacts_model');
 	}
@@ -28,7 +28,7 @@ class Clientcontacts extends MY_Controller {
 	{
 		$this->_validation_client_contact(); // validation info for id, first_name, last_name, email, phone
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			if (isAjax())
 			{
@@ -45,13 +45,13 @@ class Clientcontacts extends MY_Controller {
 		else
 		{
 			$client_id = $this->clientcontacts_model->addClientContact(
-																		$this->input->post('client_id'), 
-																		$this->input->post('first_name'), 
-																		$this->input->post('last_name'), 
-																		$this->input->post('email'), 
-																		$this->input->post('phone'),
-																		$this->input->post('title')
-																	);
+				$this->input->post('client_id'), 
+				$this->input->post('first_name'), 
+				$this->input->post('last_name'), 
+				$this->input->post('email'), 
+				$this->input->post('phone'),
+				$this->input->post('title')
+			);
 
 			if (isAjax())
 			{
@@ -76,7 +76,7 @@ class Clientcontacts extends MY_Controller {
 
 		$data['id'] = (int) $this->uri->segment(3, $this->input->post('id'));
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['clientContactData'] = $this->clientcontacts_model->getContactInfo($data['id']);
 			$data['page_title'] = $this->lang->line('clients_edit_contact');
@@ -135,7 +135,7 @@ class Clientcontacts extends MY_Controller {
 		$rules['email'] 		= 'trim|required|max_length[127]|valid_email';
 		$rules['phone'] 		= 'trim|max_length[20]';
 		$rules['title'] 		= 'trim';
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['client_id'] 	= $this->lang->line('clients_id');
 		$fields['first_name'] 	= $this->lang->line('clients_first_name');
@@ -143,9 +143,9 @@ class Clientcontacts extends MY_Controller {
 		$fields['email'] 		= $this->lang->line('clients_email');
 		$fields['phone'] 		= $this->lang->line('clients_phone');
 		$fields['title'] 		= $this->lang->line('clients_title');
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		$this->validation->set_error_delimiters('<span class="error">', '</span>');
+		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 
 }

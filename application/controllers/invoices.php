@@ -156,7 +156,7 @@ class Invoices extends MY_Controller {
 
 	function newinvoice()
 	{
-		$this->load->library('validation');
+		$this->load->library('form_validation');
 		$this->load->plugin('js_calendar');
 
 		// check if it came from a post, or has a session of clientId
@@ -195,25 +195,25 @@ class Invoices extends MY_Controller {
 
 		$data['invoiceDate'] = date("Y-m-d");
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			$this->session->keep_flashdata('clientId');
-			$data['invoiceDate'] = $this->validation->dateIssued;
+			$data['invoiceDate'] = $this->form_validation->dateIssued;
 			$data['page_title'] = $this->lang->line('invoice_new_invoice');
 			$this->load->view('invoices/newinvoice', $data);
 		}
 		else
 		{
 			$invoice_data = array(
-									'client_id' => $this->input->post('client_id'),
-									'invoice_number' => $this->input->post('invoice_number'),
-									'dateIssued' => $this->input->post('dateIssued'),
-									'tax1_desc' => $this->input->post('tax1_description'),
-									'tax1_rate' => $this->input->post('tax1_rate'),
-									'tax2_desc' => $this->input->post('tax2_description'),
-									'tax2_rate' => $this->input->post('tax2_rate'),
-									'invoice_note' => $this->input->post('invoice_note')
-								);
+				'client_id' => $this->input->post('client_id'),
+				'invoice_number' => $this->input->post('invoice_number'),
+				'dateIssued' => $this->input->post('dateIssued'),
+				'tax1_desc' => $this->input->post('tax1_description'),
+				'tax1_rate' => $this->input->post('tax1_rate'),
+				'tax2_desc' => $this->input->post('tax2_description'),
+				'tax2_rate' => $this->input->post('tax2_rate'),
+				'invoice_note' => $this->input->post('invoice_note')
+			);
 
 			$invoice_id = $this->invoices_model->addInvoice($invoice_data);
 
@@ -227,12 +227,12 @@ class Invoices extends MY_Controller {
 					$taxable = (isset($item['taxable']) && $item['taxable'] == 1) ? 1 : 0;
 
 					$invoice_items = array(
-											'invoice_id' 		=> $invoice_id,
-											'quantity' 			=> $item['quantity'],
-											'amount' 			=> $item['amount'],
-											'work_description' 	=> $item['work_description'],
-											'taxable' 			=> $taxable
-										);
+						'invoice_id' 		=> $invoice_id,
+						'quantity' 			=> $item['quantity'],
+						'amount' 			=> $item['amount'],
+						'work_description' 	=> $item['work_description'],
+						'taxable' 			=> $taxable
+					);
 
 					$this->invoices_model->addInvoiceItem($invoice_items);
 				}
@@ -349,12 +349,12 @@ class Invoices extends MY_Controller {
 
 		// some hidden form data
 		$data['form_hidden'] = array(
-										'id'	=> $data['row']->id,
-										'tax1_rate'	=> $data['row']->tax1_rate,
-										'tax1_description'	=> $data['row']->tax1_desc,
-										'tax2_rate'	=> $data['row']->tax2_rate,
-										'tax2_description'	=> $data['row']->tax2_desc,
-									);
+			'id'	=> $data['row']->id,
+			'tax1_rate'	=> $data['row']->tax1_rate,
+			'tax1_description'	=> $data['row']->tax1_desc,
+			'tax2_rate'	=> $data['row']->tax2_rate,
+			'tax2_description'	=> $data['row']->tax2_desc,
+		);
 
 		$taxable = ($this->clients_model->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
 
@@ -370,7 +370,7 @@ class Invoices extends MY_Controller {
 		$data['page_title'] = $this->lang->line('menu_edit_invoice');
 		$data['button_label'] = 'invoice_save_edited_invoice';
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['items'] = $this->invoices_model->getInvoiceItems($id);
 
@@ -387,15 +387,15 @@ class Invoices extends MY_Controller {
 			if ($this->invoices_model->uniqueInvoiceNumberEdit($this->input->post('invoice_number'), $this->input->post('id')))
 			{
 				$invoice_data = array(
-											'client_id' 		=> $this->input->post('client_id'),
-											'invoice_number' 	=> $this->input->post('invoice_number'),
-											'dateIssued' 		=> $this->input->post('dateIssued'),
-											'tax1_desc' 		=> $this->input->post('tax1_description'),
-											'tax1_rate' 		=> $this->input->post('tax1_rate'),
-											'tax2_desc' 		=> $this->input->post('tax2_description'),
-											'tax2_rate' 		=> $this->input->post('tax2_rate'),
-											'invoice_note' 		=> $this->input->post('invoice_note')
-									);
+					'client_id' 		=> $this->input->post('client_id'),
+					'invoice_number' 	=> $this->input->post('invoice_number'),
+					'dateIssued' 		=> $this->input->post('dateIssued'),
+					'tax1_desc' 		=> $this->input->post('tax1_description'),
+					'tax1_rate' 		=> $this->input->post('tax1_rate'),
+					'tax2_desc' 		=> $this->input->post('tax2_description'),
+					'tax2_rate' 		=> $this->input->post('tax2_rate'),
+					'invoice_note' 		=> $this->input->post('invoice_note')
+				);
 
 				$invoice_id = $this->invoices_model->updateInvoice($this->input->post('id'), $invoice_data);
 
@@ -413,12 +413,12 @@ class Invoices extends MY_Controller {
 					$taxable = (isset($item['taxable']) && $item['taxable'] == 1) ? 1 : 0;
 
 					$invoice_items = array(
-											'invoice_id' 		=> $invoice_id,
-											'quantity' 			=> $item['quantity'],
-											'amount' 			=> $item['amount'],
-											'work_description' 	=> $item['work_description'],
-											'taxable' 			=> $taxable
-										);
+						'invoice_id' 		=> $invoice_id,
+						'quantity' 			=> $item['quantity'],
+						'amount' 			=> $item['amount'],
+						'work_description' 	=> $item['work_description'],
+						'taxable' 			=> $taxable
+					);
 
 					$this->invoices_model->addInvoiceItem($invoice_items);
 				}
@@ -458,11 +458,11 @@ class Invoices extends MY_Controller {
 
 		// some hidden form data
 		$data['form_hidden'] = array(
-										'tax1_rate'	=> $data['row']->tax1_rate,
-										'tax1_description'	=> $data['row']->tax1_desc,
-										'tax2_rate'	=> $data['row']->tax2_rate,
-										'tax2_description'	=> $data['row']->tax2_desc,
-									);
+			'tax1_rate'	=> $data['row']->tax1_rate,
+			'tax1_description'	=> $data['row']->tax1_desc,
+			'tax2_rate'	=> $data['row']->tax2_rate,
+			'tax2_description'	=> $data['row']->tax2_desc,
+		);
 
 		$taxable = ($this->clients_model->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
 
@@ -483,7 +483,7 @@ class Invoices extends MY_Controller {
 		$data['page_title'] = $this->lang->line('menu_duplicate_invoice');
 		$data['button_label'] = 'actions_create_invoice';
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['items'] = $this->invoices_model->getInvoiceItems($id);
 
@@ -500,15 +500,15 @@ class Invoices extends MY_Controller {
 			if ($this->invoices_model->uniqueInvoiceNumber($this->input->post('invoice_number'), $this->input->post('id')))
 			{
 				$invoice_data = array(
-										'client_id' => $this->input->post('client_id'),
-										'invoice_number' => $this->input->post('invoice_number'),
-										'dateIssued' => $this->input->post('dateIssued'),
-										'tax1_desc' => $this->input->post('tax1_description'),
-										'tax1_rate' => $this->input->post('tax1_rate'),
-										'tax2_desc' => $this->input->post('tax2_description'),
-										'tax2_rate' => $this->input->post('tax2_rate'),
-										'invoice_note' => $this->input->post('invoice_note')
-									);
+					'client_id' => $this->input->post('client_id'),
+					'invoice_number' => $this->input->post('invoice_number'),
+					'dateIssued' => $this->input->post('dateIssued'),
+					'tax1_desc' => $this->input->post('tax1_description'),
+					'tax1_rate' => $this->input->post('tax1_rate'),
+					'tax2_desc' => $this->input->post('tax2_description'),
+					'tax2_rate' => $this->input->post('tax2_rate'),
+					'invoice_note' => $this->input->post('invoice_note')
+				);
 
 				$invoice_id = $this->invoices_model->addInvoice($invoice_data);
 
@@ -522,12 +522,12 @@ class Invoices extends MY_Controller {
 						$taxable = (isset($item['taxable']) && $item['taxable'] == 1) ? 1 : 0;
 
 						$invoice_items = array(
-												'invoice_id' => htmlspecialchars($invoice_id),
-												'quantity' => htmlspecialchars($item['quantity']),
-												'amount' => htmlspecialchars($item['amount']),
-												'work_description' => htmlspecialchars($item['work_description']),
-												'taxable' => htmlspecialchars($taxable)
-											);
+							'invoice_id' => htmlspecialchars($invoice_id),
+							'quantity' => htmlspecialchars($item['quantity']),
+							'amount' => htmlspecialchars($item['amount']),
+							'work_description' => htmlspecialchars($item['work_description']),
+							'taxable' => htmlspecialchars($taxable)
+						);
 
 						$this->invoices_model->addInvoiceItem($invoice_items);
 					}
@@ -823,11 +823,11 @@ class Invoices extends MY_Controller {
 		else
 		{
 			$data = array(
-							'invoice_id' => $id,
-							'amount_paid' => $amount,
-							'date_paid' => $date_paid,
-							'payment_note' => $payment_note
-						);
+				'invoice_id' => $id,
+				'amount_paid' => $amount,
+				'date_paid' => $date_paid,
+				'payment_note' => $payment_note
+			);
 
 			$this->invoices_model->payment($data);
 
@@ -921,7 +921,7 @@ class Invoices extends MY_Controller {
 		}
 		else
 		{
-			$this->validation->set_message('dateIssued', $this->lang->line('error_date_format'));
+			$this->form_validation->set_message('dateIssued', $this->lang->line('error_date_format'));
 			return FALSE;
 		}
 	}
@@ -977,7 +977,7 @@ class Invoices extends MY_Controller {
 		$rules['tax1_rate'] 		= 'trim|htmlspecialchars';
 		$rules['tax2_description'] 	= 'trim|htmlspecialchars|max_length[50]';
 		$rules['tax2_rate'] 		= 'trim|htmlspecialchars';
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['client_id'] 		= $this->lang->line('invoice_client_id');
 		$fields['invoice_number'] 	= $this->lang->line('invoice_number');
@@ -987,9 +987,9 @@ class Invoices extends MY_Controller {
 		$fields['tax1_rate'] 		= $this->settings_model->get_setting('tax1_rate');
 		$fields['tax2_description']	= $this->settings_model->get_setting('tax1_desc');
 		$fields['tax2_rate'] 		= $this->settings_model->get_setting('tax2_rate');
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		$this->validation->set_error_delimiters('<span class="error">', '</span>');
+		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 
 	// --------------------------------------------------------------------
@@ -1004,7 +1004,7 @@ class Invoices extends MY_Controller {
 		$rules['tax1_rate'] 		= 'trim|htmlspecialchars';
 		$rules['tax2_description'] 	= 'trim|htmlspecialchars|max_length[50]';
 		$rules['tax2_rate'] 		= 'trim|htmlspecialchars';
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['client_id'] 		= $this->lang->line('invoice_client_id');
 		$fields['invoice_number'] 	= $this->lang->line('invoice_number');
@@ -1014,14 +1014,14 @@ class Invoices extends MY_Controller {
 		$fields['tax1_rate'] 		= $this->settings_model->get_setting('tax1_rate');
 		$fields['tax2_description']	= $this->settings_model->get_setting('tax1_desc');
 		$fields['tax2_rate'] 		= $this->settings_model->get_setting('tax2_rate');
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		$this->validation->set_error_delimiters('<span class="error">', '</span>');
+		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 
 	function uniqueInvoice()
 	{
-		$this->validation->set_message('uniqueInvoice', $this->lang->line('invoice_not_unique'));
+		$this->form_validation->set_message('uniqueInvoice', $this->lang->line('invoice_not_unique'));
 
 		return $this->invoices_model->uniqueInvoiceNumber($this->input->post('invoice_number'));
 	}

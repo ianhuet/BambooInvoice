@@ -6,7 +6,7 @@ class Settings extends MY_Controller {
 	{
 		parent::__construct();
 
-		$this->load->library('validation');
+		$this->load->library('form_validation');
 		$this->load->helper(array('logo', 'file', 'form', 'path'));
 		$this->load->model('settings_model');
 	}
@@ -23,7 +23,7 @@ class Settings extends MY_Controller {
 
 		$data['company_logo'] = get_logo($this->settings_model->get_setting('logo'));
 
-		if ( ! $this->validation->run())
+		if ( ! $this->form_validation->run())
 		{
 			// if company_name was submitted, but we're here in the failed validation statement, then it means there were errors
 			if ($this->input->post('company_name'))
@@ -157,7 +157,7 @@ class Settings extends MY_Controller {
 		$rules['display_branding'] 	= "trim|alpha|max_length[1]";
 		$rules['new_version_autocheck'] = "trim|alpha|max_length[1]";
 
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
 		$fields['company_name'] 	= $this->lang->line('settings_company_name');
 		$fields['address1'] 		= $this->lang->line('clients_address1');
@@ -185,8 +185,8 @@ class Settings extends MY_Controller {
 		$fields['display_branding'] = $this->lang->line('settings_display_branding');
 		$fields['new_version_autocheck'] = $this->lang->line('utilities_automatic_version_check');
 
-		$this->validation->set_fields($fields);
+		$this->form_validation->set_fields($fields);
 
-		$this->validation->set_error_delimiters('<span class="error">', '</span>');
+		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 }

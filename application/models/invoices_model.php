@@ -1,13 +1,6 @@
 <?php
+
 class invoices_model extends CI_Model {
-
-	function invoices_model()
-	{
-		parent::Model();
-		$this->obj =& get_instance();
-	}
-
-	// --------------------------------------------------------------------
 
 	function addInvoice($invoice_data)
 	{
@@ -102,7 +95,7 @@ class invoices_model extends CI_Model {
 		$this->db->join('clients', 'invoices.client_id = clients.id');
 		$this->db->join('invoice_items', 'invoices.id = invoice_items.invoice_id', 'left');
 		$this->db->join('invoice_payments', 'invoices.id = invoice_payments.invoice_id', 'left');
-		$this->db->groupby('invoices.id'); 
+		$this->db->group_by('invoices.id'); 
 		$this->db->where('invoices.id', $invoice_id);
 
 		return $this->db->get('invoices');
@@ -117,7 +110,7 @@ class invoices_model extends CI_Model {
 		$short_descriptions = array();
 
 		$this->db->select('invoice_id, work_description', FALSE);
-		$this->db->group_by('invoice_id');
+		// $this->db->distinct('invoice_id');
 		
 		foreach($this->db->get('invoice_items')->result() as $short_desc)
 		{
@@ -228,7 +221,7 @@ class invoices_model extends CI_Model {
 		$this->db->join('invoice_payments', 'invoices.id = invoice_payments.invoice_id', 'left');
 
 		$this->db->order_by('dateIssued desc, invoice_number desc');
-		$this->db->groupby('invoices.id'); 
+		$this->db->group_by('invoices.id'); 
 		$this->db->offset($offset);
 		$this->db->limit($limit);
 
