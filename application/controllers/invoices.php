@@ -2,9 +2,10 @@
 
 class Invoices extends MY_Controller {
 
-	function Invoices()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
+
 		$this->lang->load('calendar');
 		$this->load->helper(array('date', 'text', 'typography'));
 		$this->load->library('pagination');
@@ -1025,4 +1026,3 @@ class Invoices extends MY_Controller {
 		return $this->invoices_model->uniqueInvoiceNumber($this->input->post('invoice_number'));
 	}
 } 
-?>

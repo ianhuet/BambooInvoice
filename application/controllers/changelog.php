@@ -2,16 +2,15 @@
 
 class Changelog extends MY_Controller {
 
-	function Changelog()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		$data['page_title'] = $this->lang->line('menu_changelog');
 		$this->load->view('changelog/index', $data);
 	}
 
 }
-?>

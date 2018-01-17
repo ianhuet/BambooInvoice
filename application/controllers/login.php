@@ -44,18 +44,18 @@ class Login extends MY_Controller {
 
 	// --------------------------------------------------------------------
 
-	function login_fail()
+	public function login_fail()
 	{
-			$data['page_title'] = $this->lang->line('login_login');
-			$this->load->view('login/login_fail',$data);
+		$data['page_title'] = $this->lang->line('login_login');
+		$this->load->view('login/login_fail',$data);
 	}
 
 	// --------------------------------------------------------------------
 
-	function forgot_password()
+	public function forgot_password()
 	{
 		$this->load->model('clientcontacts_model');
-		$this->load->library('validation');
+		$this->load->library('form_validation');
 
 		if ($this->site_sentry->is_logged_in())
 		{
@@ -66,15 +66,15 @@ class Login extends MY_Controller {
 
 		$rules['email'] = "required|valid_email";
 
-		$this->validation->set_rules($rules);
+		$this->form_validation->set_rules($rules);
 
-		$this->validation->set_error_delimiters('<p class="error">', '</p>');
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
 		$fields['email'] = $this->lang->line('clients_email');
 
-		$this->validation->set_fields($fields);
+		// $this->form_validation->set_fields($fields);
 
-		if ($this->validation->run() == FALSE)
+		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('login/login_forgotpassword', $data);
 		}
@@ -112,7 +112,7 @@ class Login extends MY_Controller {
 
 	// --------------------------------------------------------------------
 
-	function confirm_password()
+	public function confirm_password()
 	{
 		$this->load->model('clientcontacts_model', '', TRUE);
 		$customer_id = (int) $this->uri->segment(3);
@@ -181,5 +181,3 @@ class Login extends MY_Controller {
 	}
 	*/
 }
- 
-?>

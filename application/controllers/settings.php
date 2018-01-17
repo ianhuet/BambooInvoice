@@ -2,9 +2,10 @@
 
 class Settings extends MY_Controller {
 
-	function Settings()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
+
 		$this->load->library('validation');
 		$this->load->helper(array('logo', 'file', 'form', 'path'));
 		$this->load->model('settings_model');
@@ -189,4 +190,3 @@ class Settings extends MY_Controller {
 		$this->validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 }
-?>

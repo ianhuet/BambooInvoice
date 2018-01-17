@@ -2,9 +2,9 @@
 
 class Logout extends MY_Controller {
 
-	function Logout()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
 	}
 
 	// --------------------------------------------------------------------
@@ -32,4 +32,3 @@ class Logout extends MY_Controller {
 	}
 
 }
-?>

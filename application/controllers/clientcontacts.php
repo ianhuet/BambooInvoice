@@ -2,9 +2,10 @@
 
 class Clientcontacts extends MY_Controller {
 
-	function Clientcontacts()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
+
 		$this->load->library('validation');
 		$this->load->helper('ajax');
 		$this->load->model('clientcontacts_model');
@@ -148,4 +149,3 @@ class Clientcontacts extends MY_Controller {
 	}
 
 }
-?>

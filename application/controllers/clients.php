@@ -2,9 +2,10 @@
 
 class Clients extends MY_Controller {
 
-	function Clients()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
+
 		$this->load->helper('date');
 		$this->load->library('validation');
 		$this->load->model('clients_model');
@@ -263,4 +264,3 @@ class Clients extends MY_Controller {
 		$this->validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 }
-?>

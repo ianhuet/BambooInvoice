@@ -2,16 +2,15 @@
 
 class Credits extends MY_Controller {
 
-	function Credits()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
 	}
 
-	function index()
+	public function index()
 	{
 		$data['page_title'] = $this->lang->line('menu_credits');
 		$this->load->view('credits/index', $data);
 	}
 
 }
-?>

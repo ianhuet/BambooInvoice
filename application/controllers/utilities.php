@@ -2,9 +2,9 @@
 
 class Utilities extends MY_Controller {
 
-	function Utilities()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
 	}
 
 	// --------------------------------------------------------------------
@@ -172,4 +172,3 @@ class Utilities extends MY_Controller {
 		$this->load->view('utilities/phpinfo', $data);
 	}
 }
-?>

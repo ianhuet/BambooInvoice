@@ -2,9 +2,10 @@
 
 class Accounts extends MY_Controller {
 
-	function Accounts()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
+
 		$this->load->model('clientcontacts_model');
 	}
 
@@ -146,4 +147,3 @@ class Accounts extends MY_Controller {
 		$this->validation->set_error_delimiters('<span class="error">', '</span>');
 	}
 }
-?>

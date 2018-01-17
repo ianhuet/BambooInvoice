@@ -1,6 +1,7 @@
 <?php
 $this->load->view('header');
 ?>
+
 <h2><?php echo $page_title;?></h2>
 <?php
 if (isset($status) && $status == "1") {
@@ -12,7 +13,7 @@ if (isset($status) && $status == "1") {
 
 <div id="loginformdiv">
 
-	<?php echo $this->validation->email_error; ?>
+	<?php echo form_error('email'); ?>
 
 	<?php echo form_open('login/forgot_password', array('id' => 'loginform', 'onsubmit' => 'return checkform();'));?>
 
@@ -30,5 +31,6 @@ if (isset($status) && $status == "1") {
 
 <?php 
 }
+
 $this->load->view('footer');
 ?>

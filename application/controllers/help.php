@@ -2,9 +2,9 @@
 
 class Help extends MY_Controller {
 
-	function Help()
+	public function __construct()
 	{
-		parent::MY_Controller();
+		parent::__construct();
 	}
 
 	function index()
@@ -15,4 +15,3 @@ class Help extends MY_Controller {
 	}
 
 }
-?>
