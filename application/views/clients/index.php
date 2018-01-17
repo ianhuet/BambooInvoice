@@ -43,7 +43,7 @@ $this->load->view('invoices/invoice_new');
 			<?php
 				// client contact information
 				$this->db->where('client_id', $client->id);
-				$this->db->orderby("last_name", "first_name"); 
+				$this->db->order_by("last_name", "first_name"); 
 				$clientContacts = $this->db->get('clientcontacts');
 				$clientContactCount = $clientContacts->num_rows();
 

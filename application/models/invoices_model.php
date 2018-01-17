@@ -152,7 +152,7 @@ class invoices_model extends CI_Model {
 	function getInvoiceHistory($invoice_id)
 	{
 		$this->db->where('invoice_histories.invoice_id', $invoice_id);
-		$this->db->orderby('date_sent');
+		$this->db->order_by('date_sent');
 
 		return $this->db->get('invoice_histories');
 	}
@@ -162,7 +162,7 @@ class invoices_model extends CI_Model {
 	function getInvoicePaymentHistory($invoice_id)
 	{
 		$this->db->where('invoice_id', $invoice_id);
-		$this->db->orderby('date_paid');
+		$this->db->order_by('date_paid');
 
 		return $this->db->get('invoice_payments');
 	}
@@ -245,7 +245,7 @@ class invoices_model extends CI_Model {
 		}
 
 		$this->db->where('invoice_number != ""');
-		$this->db->orderby("id", "desc"); 
+		$this->db->order_by("id", "desc"); 
 		$this->db->limit(1);
 
 		$query = $this->db->get('invoices');

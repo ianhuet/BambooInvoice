@@ -10,7 +10,7 @@ class reports_model extends CI_Model {
 		$this->db->join('invoices', 'invoices.client_id = clients.id');
 		$this->db->join('invoice_items', 'invoices.id = invoice_items.invoice_id');
 		$this->db->where('dateIssued >= "' . $start_date . '" and dateIssued <= "' . $end_date . '"');
-		$this->db->orderby('clients.name');
+		$this->db->order_by('clients.name');
 		$this->db->groupby('name');
 
 		return $this->db->get('clients');
@@ -42,7 +42,7 @@ class reports_model extends CI_Model {
 		$this->db->join('invoice_items', 'invoices.id = invoice_items.invoice_id');
 		$this->db->where("dateIssued >= '$start_date'");
 		$this->db->where("dateIssued <= '$end_date'");
-		$this->db->orderby('dateIssued desc, invoice_number desc');
+		$this->db->order_by('dateIssued desc, invoice_number desc');
 
 		return $this->db->get('invoices');
 	}

@@ -1,7 +1,7 @@
 <?php
 class clients_model extends CI_Model {
 
-	function countAllClients()
+	public function countAllClients()
 	{
 		return $this->db->count_all('clients');
 	}
@@ -26,7 +26,7 @@ class clients_model extends CI_Model {
 //			$companies[$company->id] = $company->name;
 //		}
 
-		$this->db->orderby('name', 'asc');
+		$this->db->order_by('name', 'asc');
 
 		return $this->db->get('clients');
 	}
