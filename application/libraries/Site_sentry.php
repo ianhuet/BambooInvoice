@@ -7,7 +7,7 @@
 * Modified very heavily for BambooINVOICE 
 */
 
-class Site_sentry extends CI_Controller
+class Site_sentry
 {
 
 	public function __construct()
@@ -15,7 +15,7 @@ class Site_sentry extends CI_Controller
 		$this->obj =& get_instance();
 	}
 
-	function is_logged_in()
+	public function is_logged_in()
 	{
 		if ($this->obj->session) {
 
@@ -35,7 +35,7 @@ class Site_sentry extends CI_Controller
 		}
 	} 
 
-	function login_routine()
+	public function login_routine()
 	{
 		//Initialise the Encryption Library
 		$this->obj->load->library('encrypt');
@@ -76,4 +76,3 @@ class Site_sentry extends CI_Controller
 		}
 	}
 }
-?>

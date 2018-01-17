@@ -9,11 +9,11 @@
 // I strongly recommend you delete this file after you've installed BambooInvoice.
 // This controller is not in any way needed to run the application.
 
-class Install extends Controller {
+class Install  extends MY_Controller {
 
-	function __construct()
+	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->library('encrypt');
 		$this->load->dbutil();
 	}
@@ -92,14 +92,14 @@ class Install extends Controller {
 
 		// sessions_table
 		$sessions_definition = array(
-									'session_id' 			=> array('type' => 'VARCHAR', 'constraint' => 40, 'default' => 0),
-									'ip_address' 			=> array('type' => 'VARCHAR', 'constraint' => 16, 'default' => 0),
-									'user_agent' 			=> array('type' => 'VARCHAR', 'constraint' => 50, 'default' => ''),
-									'last_activity'			=> array('type' => 'INT', 'constraint' => 10, 'unsigned' => TRUE, 'default' => 0),
-									'user_id' 				=> array('type' =>'INT', 'constraint' => 11, 'default' => 0),
-									'session_data'			=> array('type' =>'TEXT'),
-									'logged_in' 			=> array('type' => 'INT', 'constraint' => 1, 'default' => 0)
-									);
+			'session_id' 			=> array('type' => 'VARCHAR', 'constraint' => 40, 'default' => 0),
+			'ip_address' 			=> array('type' => 'VARCHAR', 'constraint' => 16, 'default' => 0),
+			'user_agent' 			=> array('type' => 'VARCHAR', 'constraint' => 50, 'default' => ''),
+			'last_activity'			=> array('type' => 'INT', 'constraint' => 10, 'unsigned' => TRUE, 'default' => 0),
+			'user_id' 				=> array('type' =>'INT', 'constraint' => 11, 'default' => 0),
+			'session_data'			=> array('type' =>'TEXT'),
+			'logged_in' 			=> array('type' => 'INT', 'constraint' => 1, 'default' => 0)
+		);
 
 		$this->dbforge->add_field($sessions_definition);
 		$this->dbforge->add_key('session_id', TRUE);
@@ -107,123 +107,123 @@ class Install extends Controller {
 		$this->dbforge->create_table('sessions', TRUE);
 
 		$clientcontacts_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'client_id' 			=> array('type' => 'INT', 'constraint' => 11),
-									'first_name' 			=> array('type' => 'VARCHAR', 'constraint' => 25),
-									'last_name' 			=> array('type' => 'VARCHAR', 'constraint' => 25),
-									'title'		 			=> array('type' => 'VARCHAR', 'constraint' => 75),
-									'email' 				=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'phone' 				=> array('type' => 'VARCHAR', 'constraint' => 20),
-									'password' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
-									'access_level' 			=> array('type' => 'TINYINT', 'constraint' => 1, 'default' => 0),
-									'supervisor' 			=> array('type' => 'INT', 'constraint' => 11),
-									'last_login' 			=> array('type' => 'INT', 'constraint' => 11),
-									'password_reset'		=> array('type' => 'VARCHAR', 'constraint' => 12)
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'client_id' 			=> array('type' => 'INT', 'constraint' => 11),
+			'first_name' 			=> array('type' => 'VARCHAR', 'constraint' => 25),
+			'last_name' 			=> array('type' => 'VARCHAR', 'constraint' => 25),
+			'title'		 			=> array('type' => 'VARCHAR', 'constraint' => 75),
+			'email' 				=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'phone' 				=> array('type' => 'VARCHAR', 'constraint' => 20),
+			'password' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
+			'access_level' 			=> array('type' => 'TINYINT', 'constraint' => 1, 'default' => 0),
+			'supervisor' 			=> array('type' => 'INT', 'constraint' => 11),
+			'last_login' 			=> array('type' => 'INT', 'constraint' => 11),
+			'password_reset'		=> array('type' => 'VARCHAR', 'constraint' => 12)
+		);
 
 		$this->dbforge->add_field($clientcontacts_definition);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('clientcontacts', TRUE);
 		$clients_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'name' 					=> array('type' => 'VARCHAR', 'constraint' => 75),
-									'address1' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
-									'address2' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
-									'city' 					=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'province' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
-									'country' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
-									'postal_code' 			=> array('type' => 'VARCHAR', 'constraint' => 10),
-									'website' 				=> array('type' => 'VARCHAR', 'constraint' => 150),
-									'tax_status' 			=> array('type' => 'INT', 'constraint' => 1, 'default' => 1),
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'name' 					=> array('type' => 'VARCHAR', 'constraint' => 75),
+			'address1' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
+			'address2' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
+			'city' 					=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'province' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
+			'country' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
+			'postal_code' 			=> array('type' => 'VARCHAR', 'constraint' => 10),
+			'website' 				=> array('type' => 'VARCHAR', 'constraint' => 150),
+			'tax_status' 			=> array('type' => 'INT', 'constraint' => 1, 'default' => 1),
+		);
 
 		$this->dbforge->add_field($clients_definition);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('clients', TRUE);
 
 		$invoice_histories_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'invoice_id' 			=> array('type' => 'INT', 'constraint' => 11),
-									'clientcontacts_id'		=> array('type' => 'VARCHAR', 'constraint' => 255),
-									'date_sent' 				=> array('type' => 'DATE'),
-									'contact_type' 			=> array('type' => 'INT', 'constraint' => 1),
-									'email_body' 			=> array('type' => 'TEXT'),
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'invoice_id' 			=> array('type' => 'INT', 'constraint' => 11),
+			'clientcontacts_id'		=> array('type' => 'VARCHAR', 'constraint' => 255),
+			'date_sent' 				=> array('type' => 'DATE'),
+			'contact_type' 			=> array('type' => 'INT', 'constraint' => 1),
+			'email_body' 			=> array('type' => 'TEXT'),
+		);
 
 		$this->dbforge->add_field($invoice_histories_definition);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('invoice_histories', TRUE);
 
 		$invoice_payments_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'invoice_id' 			=> array('type' => 'INT', 'constraint' => 11),
-									'date_paid' 				=> array('type' => 'DATE'),
-									'amount_paid'			=> array('type' => 'FLOAT', 'constraint' => '7,2'),
-									'payment_note' 			=> array('type' => 'VARCHAR', 'constraint' => 255)
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'invoice_id' 			=> array('type' => 'INT', 'constraint' => 11),
+			'date_paid' 				=> array('type' => 'DATE'),
+			'amount_paid'			=> array('type' => 'FLOAT', 'constraint' => '7,2'),
+			'payment_note' 			=> array('type' => 'VARCHAR', 'constraint' => 255)
+		);
 
 		$this->dbforge->add_field($invoice_payments_definition);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('invoice_payments', TRUE);
 
 		$invoices_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'client_id' 			=> array('type' => 'INT', 'constraint' => 11),
-									'invoiceNumber' 		=> array('type' => 'VARCHAR', 'constraint' => 12),
-									'dateIssued' 			=> array('type' => 'DATE'),
-									'payment_term' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'tax1_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'tax1_rate'				=> array('type' => 'DECIMAL', 'constraint' => '6,3'),
-									'tax2_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'tax2_rate'				=> array('type' => 'DECIMAL', 'constraint' => '6,3'),
-									'invoice_note' 			=> array('type' => 'VARCHAR', 'constraint' => 255)
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'client_id' 			=> array('type' => 'INT', 'constraint' => 11),
+			'invoiceNumber' 		=> array('type' => 'VARCHAR', 'constraint' => 12),
+			'dateIssued' 			=> array('type' => 'DATE'),
+			'payment_term' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'tax1_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'tax1_rate'				=> array('type' => 'DECIMAL', 'constraint' => '6,3'),
+			'tax2_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'tax2_rate'				=> array('type' => 'DECIMAL', 'constraint' => '6,3'),
+			'invoice_note' 			=> array('type' => 'VARCHAR', 'constraint' => 255)
+		);
 
 		$this->dbforge->add_field($invoices_definition);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('invoices', TRUE);
 
 		$invoice_items_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'invoice_id' 			=> array('type' => 'INT', 'constraint' => 11, 'default' => 0),
-									'amount' 				=> array('type' => 'DECIMAL', 'constraint' => '7,2', 'default' => 0),
-									'quantity' 				=> array('type' => 'DECIMAL', 'constraint' => '7,2', 'default' => 1),
-									'work_description' 		=> array('type' => 'MEDIUMTEXT'),
-									'taxable' 				=> array('type' => 'INT', 'constraint' => 1, 'default' => 1)
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'invoice_id' 			=> array('type' => 'INT', 'constraint' => 11, 'default' => 0),
+			'amount' 				=> array('type' => 'DECIMAL', 'constraint' => '7,2', 'default' => 0),
+			'quantity' 				=> array('type' => 'DECIMAL', 'constraint' => '7,2', 'default' => 1),
+			'work_description' 		=> array('type' => 'MEDIUMTEXT'),
+			'taxable' 				=> array('type' => 'INT', 'constraint' => 1, 'default' => 1)
+		);
 
 		$this->dbforge->add_field($invoice_items_definition);
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('invoice_items', TRUE);
 
 		$settings_definition = array(
-									'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-									'company_name'			=> array('type' => 'VARCHAR', 'constraint' => 75),
-									'address1' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
-									'address2' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
-									'city' 					=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'province' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
-									'country' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
-									'postal_code' 			=> array('type' => 'VARCHAR', 'constraint' => 10),
-									'website' 				=> array('type' => 'VARCHAR', 'constraint' => 150),
-									'primary_contact' 		=> array('type' => 'VARCHAR', 'constraint' => 75),
-									'primary_contact_email'	=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'logo' 					=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'logo_pdf' 				=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'invoice_note_default' 	=> array('type' => 'VARCHAR', 'constraint' => 255),
-									'currency_type' 		=> array('type' => 'VARCHAR', 'constraint' => 20),
-									'currency_symbol'		=> array('type' => 'VARCHAR', 'constraint' => 9, 'default' => '$'),
-									'tax_code' 				=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'tax1_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'tax1_rate'				=> array('type' => 'FLOAT', 'constraint' => '6,3', 'default' => 0),
-									'tax2_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
-									'tax2_rate'				=> array('type' => 'FLOAT', 'constraint' => '6,3', 'default' => 0),
-									'save_invoices' 		=> array('type' => 'CHAR', 'constraint' => 1, 'default' => 'n'),
-									'days_payment_due' 		=> array('type' => 'INT', 'constraint' => 3, 'unsigned' => TRUE, 'default' => 30),
-									'demo_flag' 			=> array('type' => 'CHAR', 'default' => 'n'),
-									'display_branding' 		=> array('type' => 'CHAR', 'constraint' => 1, 'default' => 'y'),
-									'bambooinvoice_version'	=> array('type' => 'VARCHAR', 'constraint' => 9)
-									);
+			'id' 					=> array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+			'company_name'			=> array('type' => 'VARCHAR', 'constraint' => 75),
+			'address1' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
+			'address2' 				=> array('type' => 'VARCHAR', 'constraint' => 100),
+			'city' 					=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'province' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
+			'country' 				=> array('type' => 'VARCHAR', 'constraint' => 25),
+			'postal_code' 			=> array('type' => 'VARCHAR', 'constraint' => 10),
+			'website' 				=> array('type' => 'VARCHAR', 'constraint' => 150),
+			'primary_contact' 		=> array('type' => 'VARCHAR', 'constraint' => 75),
+			'primary_contact_email'	=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'logo' 					=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'logo_pdf' 				=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'invoice_note_default' 	=> array('type' => 'VARCHAR', 'constraint' => 255),
+			'currency_type' 		=> array('type' => 'VARCHAR', 'constraint' => 20),
+			'currency_symbol'		=> array('type' => 'VARCHAR', 'constraint' => 9, 'default' => '$'),
+			'tax_code' 				=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'tax1_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'tax1_rate'				=> array('type' => 'FLOAT', 'constraint' => '6,3', 'default' => 0),
+			'tax2_desc' 			=> array('type' => 'VARCHAR', 'constraint' => 50),
+			'tax2_rate'				=> array('type' => 'FLOAT', 'constraint' => '6,3', 'default' => 0),
+			'save_invoices' 		=> array('type' => 'CHAR', 'constraint' => 1, 'default' => 'n'),
+			'days_payment_due' 		=> array('type' => 'INT', 'constraint' => 3, 'unsigned' => TRUE, 'default' => 30),
+			'demo_flag' 			=> array('type' => 'CHAR', 'default' => 'n'),
+			'display_branding' 		=> array('type' => 'CHAR', 'constraint' => 1, 'default' => 'y'),
+			'bambooinvoice_version'	=> array('type' => 'VARCHAR', 'constraint' => 9)
+		);
 
 		$this->dbforge->add_field($settings_definition);
 		$this->dbforge->add_key('id', TRUE);
@@ -287,19 +287,19 @@ class Install extends Controller {
 		{
 			// add client notes field
 			$field = array(
-							'client_notes' => array(
-													'type' => 'MEDIUMTEXT'
-												),
-						);
+				'client_notes' => array(
+					'type' => 'MEDIUMTEXT'
+				),
+			);
 
 			$this->dbforge->add_column('clients', $field);
 
 			$clientcontacts_id = array(
-									'clientcontacts_id' => array(
-																	'name' => 'clientcontacts_id',
-																	'type' => 'VARCHAR',
-																	'constraint' => 255
-															),
+				'clientcontacts_id' => array(
+					'name' => 'clientcontacts_id',
+					'type' => 'VARCHAR',
+					'constraint' => 255
+				),
 			);
 
 			$this->dbforge->modify_column('invoice_histories', $clientcontacts_id);
@@ -317,11 +317,11 @@ class Install extends Controller {
 		if ($version == '0.8.5')
 		{
 			$field = array(
-							'new_version_autocheck' => array(
-																'type' => 'CHAR', 
-																'default' => 'n'
-															)
-						);
+				'new_version_autocheck' => array(
+					'type' => 'CHAR', 
+					'default' => 'n'
+				)
+			);
 
 			$this->dbforge->add_column('settings', $field);
 
@@ -339,20 +339,20 @@ class Install extends Controller {
 		if ($version == '0.8.6')
 		{
 			$fields = array(
-									'invoiceNumber' => array(
-																	'name' => 'invoice_number',
-																	'type' => 'VARCHAR',
-																	'constraint' => 255
-															),
+				'invoiceNumber' => array(
+					'name' => 'invoice_number',
+					'type' => 'VARCHAR',
+					'constraint' => 255
+				),
 			);
 
 			$this->dbforge->modify_column('invoices', $fields);
 
 			$fields = array(
-									'session_data' => array(
-																	'name' => 'user_data',
-																	'type' => 'TEXT'
-															),
+				'session_data' => array(
+					'name' => 'user_data',
+					'type' => 'TEXT'
+				),
 			);
 
 			$this->dbforge->modify_column('sessions', $fields);
@@ -371,39 +371,44 @@ class Install extends Controller {
 		if ($version == '0.8.7')
 		{
 			$bigger_email = array(
-									'email' => array(
-														'name' => 'email',
-														'type' => 'VARCHAR',
-														'constraint' => 127
-													),
+				'email' => array(
+					'name' => 'email',
+					'type' => 'VARCHAR',
+					'constraint' => 127
+				),
 			);
 			$this->dbforge->modify_column('clientcontacts', $bigger_email);
 
 			// add client notes field
 			$field = array(
-							'logo_realpath' => array(
-													'type' => 'CHAR',
-													'constraint' => 1,
-													'default' => 'n'
-												),
-						);
+					'logo_realpath' => array(
+						'type' => 'CHAR',
+						'constraint' => 1,
+						'default' => 'n'
+					),
+				);
 			$this->dbforge->add_column('settings', $field);
 
 			// add client tax code field
 			$field = array(
-							'tax_code' => array(
-													'type' => 'VARCHAR',
-													'constraint' => 75,
-													'default' => ''
-												),
-						);
+					'tax_code' => array(
+						'type' => 'VARCHAR',
+						'constraint' => 75,
+						'default' => ''
+					),
+				);
 			$this->dbforge->add_column('clients', $field);
 
 			// add days invoice is due on a per invoice basis
 			$this->load->model('settings_model');
 			$field = array(
-							'days_payment_due' 		=> array('type' => 'INT', 'constraint' => 3, 'unsigned' => TRUE, 'default' => $this->settings_model->get_setting('days_payment_due')),
-						);
+					'days_payment_due' => array(
+						'type' => 'INT',
+						'constraint' => 3,
+						'unsigned' => TRUE,
+						'default' => $this->settings_model->get_setting('days_payment_due')
+					),
+				);
 			$this->dbforge->add_column('invoices', $field);
 
 			$this->db->set('bambooinvoice_version', '0.8.8');
@@ -419,21 +424,21 @@ class Install extends Controller {
 		if ($version == '0.8.8')
 		{
 			$bigger_amount = array(
-									'amount' => array(
-														'name' => 'amount',
-														'type' => 'DECIMAL',
-														'constraint' => '11,2',
-														'default' => 0
-													),
+				'amount' => array(
+					'name' => 'amount',
+					'type' => 'DECIMAL',
+					'constraint' => '11,2',
+					'default' => 0
+				),
 			);
 			$this->dbforge->modify_column('invoice_items', $bigger_amount);
 
 			$bigger_note = array(
-									'invoice_note' => array(
-														'name' => 'invoice_note',
-														'type' => 'TEXT',
-														'constraint' => '2000'
-													),
+				'invoice_note' => array(
+					'name' => 'invoice_note',
+					'type' => 'TEXT',
+					'constraint' => '2000'
+				),
 			);
 			$this->dbforge->modify_column('invoices', $bigger_note);
 

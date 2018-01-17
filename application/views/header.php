@@ -33,7 +33,7 @@ echo 'Bam'.'boo'.'In'.'voice'; // this is like this so that nobody can get it by
 echo ': '.$page_title;
 ?></title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="author" content="Derek Allard - http://www.derekallard.com" />
+<meta name="author" content="Derek Allard - http://www.derekallard.com. Upgrade by Ian Huet. www.github.com/ianhuet" />
 <meta name="description" content="BambooInvoice : Simple, Open Source, Online Invoicing" />
 <meta name="keywords" content="BambooInvoice, Online Invoicing" />
 <?php if ($this->settings_model->get_setting('demo_flag') == 'y'):?>
@@ -44,14 +44,16 @@ echo ': '.$page_title;
 <meta name="rating" content="general" />
 <meta name="language" content="<?php echo $this->lang->line('setting_short_language');?>" />
 <meta name="copyright" content="Copyright (c) <?php echo date("Y");?> Derek Allard" />
-<script type="text/javascript" src="<?php echo base_url()?>js/bamboo.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/prototype.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/lightbox.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/scriptaculous/scriptaculous.js?load=effects,dragdrop"></script>
+
 <link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" type="image/ico" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>css/bamboo.css" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>css/lightbox.css" />
 <link type="text/css" rel="stylesheet" media="print" href="<?php echo base_url()?>css/bamboo_print.css" />
+
+<script type="text/javascript" src="<?php echo base_url()?>js/bamboo.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/prototype.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/lightbox.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/scriptaculous/scriptaculous.js?load=effects,dragdrop"></script>
 <script type="text/javascript">
 	base_url = "<?php echo site_url();?>/";
 	base_url_no_index = "<?php echo base_url();?>";

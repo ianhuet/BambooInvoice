@@ -4,12 +4,10 @@ class Login extends MY_Controller {
 
 	public function __construct()
 	{
-		// parent::MY_Controller();
 		parent::__construct();
 
 		$this->load->model('settings_model', '', TRUE);
 		$this->load->helper('string');
-		$this->load->helper('form');
 		$this->load->library('encrypt');
 		$this->load->library('email');
 	}
@@ -35,7 +33,7 @@ class Login extends MY_Controller {
 
 		if (isset($username) && $username != '')
 		{
-			// $this->site_sentry->login_routine();
+			$this->site_sentry->login_routine();
 		}
 		else
 		{
@@ -59,7 +57,7 @@ class Login extends MY_Controller {
 		$this->load->model('clientcontacts_model');
 		$this->load->library('validation');
 
-		// if ($this->site_sentry->is_logged_in())
+		if ($this->site_sentry->is_logged_in())
 		{
 			redirect ('logout');
 		}
