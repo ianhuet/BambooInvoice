@@ -85,14 +85,14 @@ class Clientcontacts extends MY_Controller {
 		else
 		{
 			$this->clientcontacts_model->editClientContact(
-															$this->input->post('id'), 
-															$this->input->post('client_id'),
-															$this->input->post('first_name'),
-															$this->input->post('last_name'), 
-															$this->input->post('email'), 
-															$this->input->post('phone'),
-															$this->input->post('title')
-														);
+				$this->input->post('id'), 
+				$this->input->post('client_id'),
+				$this->input->post('first_name'),
+				$this->input->post('last_name'), 
+				$this->input->post('email'), 
+				$this->input->post('phone'),
+				$this->input->post('title')
+			);
 
 			$this->session->set_flashdata('message', $this->lang->line('clients_edited_contact_info'));
 			$this->session->set_flashdata('clientEdit', $this->input->post('client_id'));
@@ -129,21 +129,12 @@ class Clientcontacts extends MY_Controller {
 
 	function _validation_client_contact()
 	{
-		$rules['client_id'] 	= 'trim|required|numeric';
-		$rules['first_name'] 	= 'trim|required|max_length[25]';
-		$rules['last_name'] 	= 'trim|required|max_length[25]';
-		$rules['email'] 		= 'trim|required|max_length[127]|valid_email';
-		$rules['phone'] 		= 'trim|max_length[20]';
-		$rules['title'] 		= 'trim';
-		$this->form_validation->set_rules($rules);
-
-		$fields['client_id'] 	= $this->lang->line('clients_id');
-		$fields['first_name'] 	= $this->lang->line('clients_first_name');
-		$fields['last_name'] 	= $this->lang->line('clients_last_name');
-		$fields['email'] 		= $this->lang->line('clients_email');
-		$fields['phone'] 		= $this->lang->line('clients_phone');
-		$fields['title'] 		= $this->lang->line('clients_title');
-		$this->form_validation->set_fields($fields);
+		$this->form_validation->set_rules('client_id', $this->lang->line('clients_id'), 'trim|required|numeric');
+		$this->form_validation->set_rules('first_name', $this->lang->line('clients_first_name'), 'trim|required|max_length[25]');
+		$this->form_validation->set_rules('last_name', $this->lang->line('clients_last_name'), 'trim|required|max_length[25]');
+		$this->form_validation->set_rules('email', $this->lang->line('clients_email'), 'trim|required|max_length[127]|valid_email');
+		$this->form_validation->set_rules('phone', $this->lang->line('clients_phone'), 'trim|max_length[20]');
+		$this->form_validation->set_rules('title', $this->lang->line('clients_title'), 'trim');
 
 		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}

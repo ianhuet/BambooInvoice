@@ -63,14 +63,14 @@ class Accounts extends MY_Controller {
 		else
 		{
 			$client_id = $this->clientcontacts_model->addClientContact(
-																		0, 
-																		$this->input->post('first_name'), 
-																		$this->input->post('last_name'), 
-																		$this->input->post('username'), 
-																		$this->input->post('phone'),
-																		$this->input->post('title'),
-																		1 // turn on login access
-																	);
+				0, 
+				$this->input->post('first_name'), 
+				$this->input->post('last_name'), 
+				$this->input->post('username'), 
+				$this->input->post('phone'),
+				$this->input->post('title'),
+				1 // turn on login access
+			);
 
 			// normally clients don't get passwords, so we need to manually set it now
 			$this->clientcontacts_model->password_change($client_id, $this->input->post('login_password'));
@@ -99,27 +99,15 @@ class Accounts extends MY_Controller {
 
 	function _validation()
 	{
-		$rules['clientName'] 	= 'trim|required|max_length[75]|htmlspecialchars';
-		$rules['website'] 		= 'trim|htmlspecialchars|max_length[150]';
-		$rules['address1'] 		= 'trim|htmlspecialchars|max_length[100]';
-		$rules['address2'] 		= 'trim|htmlspecialchars|max_length[100]';
-		$rules['city'] 			= 'trim|htmlspecialchars|max_length[50]';
-		$rules['province'] 		= 'trim|htmlspecialchars|max_length[25]';
-		$rules['country'] 		= 'trim|htmlspecialchars|max_length[25]';
-		$rules['postal_code'] 	= 'trim|htmlspecialchars|max_length[10]';
-		$rules['tax_status'] 	= 'trim|htmlspecialchars|exact_length[1]|numeric|required';
-		$this->form_validation->set_rules($rules);
-
-		$fields['clientName'] 	= $this->lang->line('clients_name');
-		$fields['website'] 		= $this->lang->line('clients_website');
-		$fields['address1'] 	= $this->lang->line('clients_address1');
-		$fields['address2'] 	= $this->lang->line('clients_address2');
-		$fields['city'] 		= $this->lang->line('clients_cityt');
-		$fields['province'] 	= $this->lang->line('clients_province');
-		$fields['country'] 		= $this->lang->line('clients_country');
-		$fields['postal_code'] 	= $this->lang->line('clients_postal');
-		$fields['tax_status'] 	= $this->lang->line('invoice_tax_status');
-		$this->form_validation->set_fields($fields);
+		$this->form_validation->set_rules('clientName', $this->lang->line('clients_name'), 'trim|required|max_length[75]|htmlspecialchars');
+		$this->form_validation->set_rules('website', $this->lang->line('clients_website'), 'trim|htmlspecialchars|max_length[150]');
+		$this->form_validation->set_rules('address1', $this->lang->line('clients_address1'), 'trim|htmlspecialchars|max_length[100]');
+		$this->form_validation->set_rules('address2', $this->lang->line('clients_address2'), 'trim|htmlspecialchars|max_length[100]');
+		$this->form_validation->set_rules('city', $this->lang->line('clients_cityt'),'trim|htmlspecialchars|max_length[50]');
+		$this->form_validation->set_rules('province', $this->lang->line('clients_province'),'trim|htmlspecialchars|max_length[25]');
+		$this->form_validation->set_rules('country', $this->lang->line('clients_country'),'trim|htmlspecialchars|max_length[25]');
+		$this->form_validation->set_rules('postal_code', $this->lang->line('clients_postal'), 'trim|htmlspecialchars|max_length[10]');
+		$this->form_validation->set_rules('tax_status', $this->lang->line('invoice_tax_status'), 'trim|htmlspecialchars|exact_length[1]|numeric|required');
 
 		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
@@ -128,21 +116,12 @@ class Accounts extends MY_Controller {
 
 	function _validation_client_contact()
 	{
-		$rules['client_id'] 	= 'trim|required|htmlspecialchars|numeric';
-		$rules['first_name'] 	= 'trim|required|htmlspecialchars|max_length[25]';
-		$rules['last_name'] 	= 'trim|required|htmlspecialchars|max_length[25]';
-		$rules['email'] 		= 'trim|required|htmlspecialchars|max_length[127]|valid_email';
-		$rules['phone'] 		= 'trim|htmlspecialchars|max_length[20]';
-		$rules['title'] 		= 'trim|htmlspecialchars';
-		$this->form_validation->set_rules($rules);
-
-		$fields['client_id'] 	= $this->lang->line('clients_id');
-		$fields['first_name'] 	= $this->lang->line('clients_first_name');
-		$fields['last_name'] 	= $this->lang->line('clients_last_name');
-		$fields['email'] 		= $this->lang->line('clients_email');
-		$fields['phone'] 		= $this->lang->line('clients_phone');
-		$fields['title'] 		= $this->lang->line('clients_title');
-		$this->form_validation->set_fields($fields);
+		$this->form_validation->set_rules('client_id', $this->lang->line('clients_id'), 'trim|required|htmlspecialchars|numeric');
+		$this->form_validation->set_rules('first_name', $this->lang->line('clients_first_name'), 'trim|required|htmlspecialchars|max_length[25]');
+		$this->form_validation->set_rules('last_name', $this->lang->line('clients_last_name'), 'trim|required|htmlspecialchars|max_length[25]');
+		$this->form_validation->set_rules('email', $this->lang->line('clients_email'), 'trim|required|htmlspecialchars|max_length[127]|valid_email');
+		$this->form_validation->set_rules('phone', $this->lang->line('clients_phone'), 'trim|htmlspecialchars|max_length[20]');
+		$this->form_validation->set_rules('title', $this->lang->line('clients_title'), 'trim|htmlspecialchars');
 
 		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
