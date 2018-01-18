@@ -96,8 +96,8 @@ class Utilities extends MY_Controller {
 
 		// this function does both excel and xml exporting
 		// for convenience, let's just load both plugins
-		$this->load->plugin('to_excel');
-		$this->load->plugin('to_xml');
+		$this->load->helper('to_excel_pi');
+		$this->load->helper('to_xml_pi');
 
 		$invoices = $this->invoices_model->getInvoicesAJAX($status, $client, $this->settings_model->get_setting('days_payment_due'));
 

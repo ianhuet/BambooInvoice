@@ -198,7 +198,7 @@ class Invoices extends MY_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->session->keep_flashdata('clientId');
-			$data['invoiceDate'] = $this->form_validation->dateIssued;
+			// $data['invoiceDate'] = $this->form_validation->dateIssued;
 			$data['page_title'] = $this->lang->line('invoice_new_invoice');
 			$this->load->view('invoices/newinvoice', $data);
 		}
