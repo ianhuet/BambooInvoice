@@ -64,15 +64,8 @@ class Login extends MY_Controller {
 
 		$data['page_title'] = $this->lang->line('login_forgot_password');
 
-		$rules['email'] = "required|valid_email";
-
-		$this->form_validation->set_rules($rules);
-
+		$this->form_validation->set_rules('email', $this->lang->line('clients_email'), 'required|valid_email');
 		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
-
-		$fields['email'] = $this->lang->line('clients_email');
-
-		// $this->form_validation->set_fields($fields);
 
 		if ($this->form_validation->run() == FALSE)
 		{

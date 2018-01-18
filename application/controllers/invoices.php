@@ -157,7 +157,7 @@ class Invoices extends MY_Controller {
 	function newinvoice()
 	{
 		$this->load->library('form_validation');
-		$this->load->plugin('js_calendar');
+		$this->load->helper('js_calendar_pi');
 
 		// check if it came from a post, or has a session of clientId
 		$id = ($this->input->post('client_id') != '') ? $this->input->post('client_id') : $this->session->flashdata('clientId');
@@ -969,25 +969,14 @@ class Invoices extends MY_Controller {
 
 	function _validation()
 	{
-		$rules['client_id'] 		= 'required|numeric';
-		$rules['invoice_number'] 	= 'trim|required|htmlspecialchars|max_length[12]|alpha_dash|callback_uniqueInvoice';
-		$rules['dateIssued'] 		= 'trim|htmlspecialchars|callback_dateIssued';
-		$rules['invoice_note'] 		= 'trim|htmlspecialchars|max_length[2000]';
-		$rules['tax1_description'] 	= 'trim|htmlspecialchars|max_length[50]';
-		$rules['tax1_rate'] 		= 'trim|htmlspecialchars';
-		$rules['tax2_description'] 	= 'trim|htmlspecialchars|max_length[50]';
-		$rules['tax2_rate'] 		= 'trim|htmlspecialchars';
-		$this->form_validation->set_rules($rules);
-
-		$fields['client_id'] 		= $this->lang->line('invoice_client_id');
-		$fields['invoice_number'] 	= $this->lang->line('invoice_number');
-		$fields['dateIssued'] 		= $this->lang->line('invoice_date_issued');
-		$fields['invoice_note'] 	= $this->lang->line('invoice_note');
-		$fields['tax1_description']	= $this->settings_model->get_setting('tax1_desc');
-		$fields['tax1_rate'] 		= $this->settings_model->get_setting('tax1_rate');
-		$fields['tax2_description']	= $this->settings_model->get_setting('tax1_desc');
-		$fields['tax2_rate'] 		= $this->settings_model->get_setting('tax2_rate');
-		$this->form_validation->set_fields($fields);
+		$this->form_validation->set_rules('client_id', $this->lang->line('invoice_client_id'), 'required|numeric');
+		$this->form_validation->set_rules('invoice_number', $this->lang->line('invoice_number'), 'trim|required|htmlspecialchars|max_length[12]|alpha_dash|callback_uniqueInvoice');
+		$this->form_validation->set_rules('dateIssued', $this->lang->line('invoice_date_issued'), 'trim|htmlspecialchars|callback_dateIssued');
+		$this->form_validation->set_rules('invoice_note', $this->lang->line('invoice_note'), 'trim|htmlspecialchars|max_length[2000]');
+		$this->form_validation->set_rules('tax1_description', $this->settings_model->get_setting('tax1_desc'), 'trim|htmlspecialchars|max_length[50]');
+		$this->form_validation->set_rules('tax1_rate', $this->settings_model->get_setting('tax1_rate'), 'trim|htmlspecialchars');
+		$this->form_validation->set_rules('tax2_description', $this->settings_model->get_setting('tax1_desc'), 'trim|htmlspecialchars|max_length[50]');
+		$this->form_validation->set_rules('tax2_rate', $this->settings_model->get_setting('tax2_rate'), 'trim|htmlspecialchars');
 
 		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
@@ -996,25 +985,14 @@ class Invoices extends MY_Controller {
 
 	function _validation_edit()
 	{
-		$rules['client_id'] 		= 'required|numeric';
-		$rules['invoice_number'] 	= 'trim|required|htmlspecialchars|max_length[50]|alpha_dash';
-		$rules['dateIssued'] 		= 'trim|htmlspecialchars|callback_dateIssued';
-		$rules['invoice_note'] 		= 'trim|htmlspecialchars|max_length[2000]';
-		$rules['tax1_description'] 	= 'trim|htmlspecialchars|max_length[50]';
-		$rules['tax1_rate'] 		= 'trim|htmlspecialchars';
-		$rules['tax2_description'] 	= 'trim|htmlspecialchars|max_length[50]';
-		$rules['tax2_rate'] 		= 'trim|htmlspecialchars';
-		$this->form_validation->set_rules($rules);
-
-		$fields['client_id'] 		= $this->lang->line('invoice_client_id');
-		$fields['invoice_number'] 	= $this->lang->line('invoice_number');
-		$fields['dateIssued'] 		= $this->lang->line('invoice_date_issued');
-		$fields['invoice_note'] 	= $this->lang->line('invoice_note');
-		$fields['tax1_description']	= $this->settings_model->get_setting('tax1_desc');
-		$fields['tax1_rate'] 		= $this->settings_model->get_setting('tax1_rate');
-		$fields['tax2_description']	= $this->settings_model->get_setting('tax1_desc');
-		$fields['tax2_rate'] 		= $this->settings_model->get_setting('tax2_rate');
-		$this->form_validation->set_fields($fields);
+		$this->form_validation->set_rules('client_id', $this->lang->line('invoice_client_id'), 'required|numeric');
+		$this->form_validation->set_rules('invoice_number', $this->lang->line('invoice_number'), 'trim|required|htmlspecialchars|max_length[50]|alpha_dash');
+		$this->form_validation->set_rules('dateIssued', $this->lang->line('invoice_date_issued'), 'trim|htmlspecialchars|callback_dateIssued');
+		$this->form_validation->set_rules('invoice_note', $this->lang->line('invoice_note'), 'trim|htmlspecialchars|max_length[2000]');
+		$this->form_validation->set_rules('tax1_description', $this->settings_model->get_setting('tax1_desc'), 'trim|htmlspecialchars|max_length[50]');
+		$this->form_validation->set_rules('tax1_rate', $this->settings_model->get_setting('tax1_rate'), 'trim|htmlspecialchars');
+		$this->form_validation->set_rules('tax2_description', $this->settings_model->get_setting('tax1_desc'), 'trim|htmlspecialchars|max_length[50]');
+		$this->form_validation->set_rules('tax2_rate', $this->settings_model->get_setting('tax2_rate'), 'trim|htmlspecialchars');
 
 		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}
