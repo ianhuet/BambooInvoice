@@ -45,29 +45,29 @@ class Settings extends MY_Controller {
 			$save_invoices = ($this->input->post('save_invoices') == 'y') ? 'y' : 'n';
 
 			$data = array(
-							'company_name' => $this->input->post('company_name'),
-							'address1' => $this->input->post('address1'),
-							'address2' => $this->input->post('address2'),
-							'city' => $this->input->post('city'),
-							'province' => $this->input->post('province'),
-							'country' => $this->input->post('country'),
-							'postal_code' => $this->input->post('postal_code'),
-							'website' => $this->input->post('website'),
-							'primary_contact' => $this->input->post('primary_contact'),
-							'primary_contact_email' => $this->input->post('primary_contact_email'),
-							'invoice_note_default' => $this->input->post('invoice_note_default'),
-							'currency_type' => $this->input->post('currency_type'),
-							'currency_symbol' => $this->input->post('currency_symbol'),
-							'days_payment_due' => (int) $this->input->post('days_payment_due'),
-							'tax_code' => $this->input->post('tax_code'),
-							'tax1_desc' => $this->input->post('tax1_desc'),
-							'tax1_rate' => $this->input->post('tax1_rate'),
-							'tax2_desc' => $this->input->post('tax2_desc'),
-							'tax2_rate' => $this->input->post('tax2_rate'),
-							'save_invoices' => $save_invoices,
-							'display_branding' => $this->input->post('display_branding'),
-							'new_version_autocheck' => $this->input->post('new_version_autocheck')
-						);
+				'company_name' => $this->input->post('company_name'),
+				'address1' => $this->input->post('address1'),
+				'address2' => $this->input->post('address2'),
+				'city' => $this->input->post('city'),
+				'province' => $this->input->post('province'),
+				'country' => $this->input->post('country'),
+				'postal_code' => $this->input->post('postal_code'),
+				'website' => $this->input->post('website'),
+				'primary_contact' => $this->input->post('primary_contact'),
+				'primary_contact_email' => $this->input->post('primary_contact_email'),
+				'invoice_note_default' => $this->input->post('invoice_note_default'),
+				'currency_type' => $this->input->post('currency_type'),
+				'currency_symbol' => $this->input->post('currency_symbol'),
+				'days_payment_due' => (int) $this->input->post('days_payment_due'),
+				'tax_code' => $this->input->post('tax_code'),
+				'tax1_desc' => $this->input->post('tax1_desc'),
+				'tax1_rate' => $this->input->post('tax1_rate'),
+				'tax2_desc' => $this->input->post('tax2_desc'),
+				'tax2_rate' => $this->input->post('tax2_rate'),
+				'save_invoices' => $save_invoices,
+				'display_branding' => $this->input->post('display_branding'),
+				'new_version_autocheck' => $this->input->post('new_version_autocheck')
+			);
 
 			// Euro has conversion issues in DOMPDF, this is a fix for it
 			$data['currency_symbol'] = ($data['currency_symbol'] == '€') ? '&#0128;' : $data['currency_symbol'];
@@ -131,61 +131,31 @@ class Settings extends MY_Controller {
 
 	function _validation()
 	{
-		$rules['company_name'] 		= "trim|max_length[75]";
-		$rules['address1'] 			= "trim|max_length[100]";
-		$rules['address2'] 			= "trim|max_length[100]";
-		$rules['city'] 				= "trim|max_length[50]";
-		$rules['province'] 			= "trim|max_length[25]";
-		$rules['country'] 			= "trim|prep_for_form|max_length[25]";
-		$rules['postal_code'] 		= "trim|prep_for_form|max_length[10]";
-		$rules['website'] 			= "trim|prep_for_form|max_length[150]";
-		$rules['primary_contact'] 	= "trim|prep_for_form|required|max_length[75]";
-		$rules['primary_contact_email'] = "trim|prep_for_form|required|max_length[50]|valid_email";
-		$rules['password'] 			= "min_length[4]|max_length[50]|alpha_dash";
-		$rules['password_confirm']	= "matches[password]";
-		$rules['logo'] 				= "trim|prep_for_form|max_length[50]";
-		$rules['invoice_note_default'] = "trim|prep_for_form|max_length[2000]";
-		$rules['currency_type'] 	= "trim|prep_for_form|max_length[20]";
-		$rules['currency_symbol'] 	= "ltrim|max_length[9]";
-		$rules['days_payment_due'] 	= "trim|prep_for_form|numeric|max_length[3]";
-		$rules['tax_code'] 			= "trim|prep_for_form|max_length[50]";
-		$rules['tax1_desc'] 		= "trim|prep_for_form|max_length[50]";
-		$rules['tax1_rate'] 		= "trim|prep_for_form|max_length[6]";
-		$rules['tax2_desc'] 		= "trim|prep_for_form|max_length[50]";
-		$rules['tax2_rate'] 		= "trim|prep_for_form|max_length[6]";
-		$rules['save_invoices'] 	= "trim|alpha|max_length[1]";
-		$rules['display_branding'] 	= "trim|alpha|max_length[1]";
-		$rules['new_version_autocheck'] = "trim|alpha|max_length[1]";
-
-		$this->form_validation->set_rules($rules);
-
-		$fields['company_name'] 	= $this->lang->line('settings_company_name');
-		$fields['address1'] 		= $this->lang->line('clients_address1');
-		$fields['address2'] 		= $this->lang->line('clients_address2');
-		$fields['city'] 			= $this->lang->line('clients_city');
-		$fields['province'] 		= $this->lang->line('clients_province');
-		$fields['country'] 			= $this->lang->line('clients_country');
-		$fields['postal_code'] 		= $this->lang->line('clients_postal');
-		$fields['website'] 			= $this->lang->line('clients_website');
-		$fields['primary_contact'] 	= $this->lang->line('settings_primary_contact');
-		$fields['primary_contact_email'] = $this->lang->line('settings_primary_email');
-		$fields['password'] 		= $this->lang->line('login_password');
-		$fields['password_confirm']	= $this->lang->line('login_password_confirm');
-		$fields['logo'] 			= $this->lang->line('settings_logo');
-		$fields['invoice_note_default'] = $this->lang->line('settings_default_note');
-		$fields['currency_type'] 	= $this->lang->line('settings_currency type');
-		$fields['currency_symbol'] 	= $this->lang->line('settings_currency symbol');
-		$fields['days_payment_due']	= $this->lang->line('settings_payment_days');
-		$fields['tax_code'] 		= $this->lang->line('settings_tax_code');
-		$fields['tax1_desc'] 		= $this->lang->line('invoice_tax1_description');
-		$fields['tax1_rate'] 		= $this->lang->line('invoice_tax1_rate');
-		$fields['tax2_desc'] 		= $this->lang->line('invoice_tax2_description');
-		$fields['tax2_rate'] 		= $this->lang->line('invoice_tax2_rate');
-		$fields['save_invoices'] 	= $this->lang->line('settings_display_branding');
-		$fields['display_branding'] = $this->lang->line('settings_display_branding');
-		$fields['new_version_autocheck'] = $this->lang->line('utilities_automatic_version_check');
-
-		$this->form_validation->set_fields($fields);
+		$this->form_validation->set_rules('company_name', $this->lang->line('settings_company_name'), "trim|max_length[75]");
+		$this->form_validation->set_rules('address1', $this->lang->line('clients_address1'), "trim|max_length[100]");
+		$this->form_validation->set_rules('address2', $this->lang->line('clients_address2'), "trim|max_length[100]");
+		$this->form_validation->set_rules('city', $this->lang->line('clients_city'), "trim|max_length[50]");
+		$this->form_validation->set_rules('province', $this->lang->line('clients_province'), "trim|max_length[25]");
+		$this->form_validation->set_rules('country', $this->lang->line('clients_country'), "trim|prep_for_form|max_length[25]");
+		$this->form_validation->set_rules('postal_code', $this->lang->line('clients_postal'), "trim|prep_for_form|max_length[10]");
+		$this->form_validation->set_rules('website', $this->lang->line('clients_website'), "trim|prep_for_form|max_length[150]");
+		$this->form_validation->set_rules('primary_contact', $this->lang->line('settings_primary_contact'), "trim|prep_for_form|required|max_length[75]");
+		$this->form_validation->set_rules('primary_contact_email', $this->lang->line('settings_primary_email'), "trim|prep_for_form|required|max_length[50]|valid_email");
+		$this->form_validation->set_rules('password', $this->lang->line('login_password'), "min_length[4]|max_length[50]|alpha_dash");
+		$this->form_validation->set_rules('password_confirm', $this->lang->line('login_password_confirm'), "matches[password]");
+		$this->form_validation->set_rules('logo', $this->lang->line('settings_logo'), "trim|prep_for_form|max_length[50]");
+		$this->form_validation->set_rules('invoice_note_default', $this->lang->line('settings_default_note'), "trim|prep_for_form|max_length[2000]");
+		$this->form_validation->set_rules('currency_type', $this->lang->line('settings_currency type'), "trim|prep_for_form|max_length[20]");
+		$this->form_validation->set_rules('currency_symbol', $this->lang->line('settings_currency symbol'), "ltrim|max_length[9]");
+		$this->form_validation->set_rules('days_payment_due', $this->lang->line('settings_payment_days'), "trim|prep_for_form|numeric|max_length[3]");
+		$this->form_validation->set_rules('tax_code', $this->lang->line('settings_tax_code'), "trim|prep_for_form|max_length[50]");
+		$this->form_validation->set_rules('tax1_desc', $this->lang->line('invoice_tax1_description'), "trim|prep_for_form|max_length[50]");
+		$this->form_validation->set_rules('tax1_rate', $this->lang->line('invoice_tax1_rate'), "trim|prep_for_form|max_length[6]");
+		$this->form_validation->set_rules('tax2_desc', $this->lang->line('invoice_tax2_description'), "trim|prep_for_form|max_length[50]");
+		$this->form_validation->set_rules('tax2_rate', $this->lang->line('invoice_tax2_rate'), "trim|prep_for_form|max_length[6]");
+		$this->form_validation->set_rules('save_invoices', $this->lang->line('settings_display_branding'), "trim|alpha|max_length[1]");
+		$this->form_validation->set_rules('display_branding', $this->lang->line('settings_display_branding'), "trim|alpha|max_length[1]");
+		$this->form_validation->set_rules('new_version_autocheck', $this->lang->line('utilities_automatic_version_check'), "trim|alpha|max_length[1]");
 
 		$this->form_validation->set_error_delimiters('<span class="error">', '</span>');
 	}

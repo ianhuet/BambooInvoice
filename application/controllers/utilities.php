@@ -63,9 +63,9 @@ class Utilities extends MY_Controller {
 			$filename = ($this->config->item('download_filename_prefix') != '') ? $this->config->item('download_filename_prefix') : 'bambooinvoice';
 
 			$prefs = array(
-							'format' 	=> 'zip',
-							'filename' 	=> $filename.'_'.date ("Ymd").'.zip',
-						);
+				'format' 	=> 'zip',
+				'filename' 	=> $filename.'_'.date ("Ymd").'.zip',
+			);
 
 			// Backup your entire database and assign it to a variable
 			$backup =& $this->dbutil->backup($prefs);

@@ -520,32 +520,32 @@ class Install  extends MY_Controller {
 
 		// update some of the setting information
 		$settings = array(
-							'company_name'			=> 'DerekAllard.com',
-							'address1' 				=> '123 Address Street',
-							'address2' 				=> '',
-							'city' 					=> 'Toronto',
-							'province' 				=> 'Ontario',
-							'country' 				=> 'Canada',
-							'postal_code' 			=> 'ABC123',
-							'website' 				=> 'http://bambooinvoice.org',
-							'primary_contact' 		=> 'Derek Allard',
-							'primary_contact_email'	=> 'info@bambooinvoice.org',
-							'logo' 					=> '',
-							'logo_pdf' 				=> '',
-							'invoice_note_default' 	=> 'Thanks for your business',
-							'currency_type' 		=> 'CDN',
-							'currency_symbol'		=> '$',
-							'tax_code' 				=> '123456789',
-							'tax1_desc' 			=> 'GST',
-							'tax1_rate'				=> 5,
-							'tax2_desc' 			=> '',
-							'tax2_rate'				=> '',
-							'save_invoices' 		=> 'n',
-							'days_payment_due' 		=> 30,
-							'demo_flag' 			=> 'y',
-							'display_branding' 		=> 'y',
-							'new_version_autocheck'	=> 'y'
-							);
+			'company_name'			=> 'DerekAllard.com',
+			'address1' 				=> '123 Address Street',
+			'address2' 				=> '',
+			'city' 					=> 'Toronto',
+			'province' 				=> 'Ontario',
+			'country' 				=> 'Canada',
+			'postal_code' 			=> 'ABC123',
+			'website' 				=> 'http://bambooinvoice.org',
+			'primary_contact' 		=> 'Derek Allard',
+			'primary_contact_email'	=> 'info@bambooinvoice.org',
+			'logo' 					=> '',
+			'logo_pdf' 				=> '',
+			'invoice_note_default' 	=> 'Thanks for your business',
+			'currency_type' 		=> 'CDN',
+			'currency_symbol'		=> '$',
+			'tax_code' 				=> '123456789',
+			'tax1_desc' 			=> 'GST',
+			'tax1_rate'				=> 5,
+			'tax2_desc' 			=> '',
+			'tax2_rate'				=> '',
+			'save_invoices' 		=> 'n',
+			'days_payment_due' 		=> 30,
+			'demo_flag' 			=> 'y',
+			'display_branding' 		=> 'y',
+			'new_version_autocheck'	=> 'y'
+		);
 
 		$this->db->update('settings', $settings, "id = 1");
 
