@@ -20,11 +20,11 @@ rest of the itemized items. -->
 	<input type="hidden" name="tax2_rate" value="<?php echo $tax2_rate;?>" />
 <?php endif;?>
 	<p>
-		<label><?php echo $this->lang->line('invoice_number');?> <input type="text" name="invoice_number" id="invoice_number" value="<?php echo ($this->validation->invoice_number) ? ($this->validation->invoice_number) : ($suggested_invoice_number);?>" /></label> 
-		<em>(<?php echo $this->lang->line('invoice_last_used') . ' ' . $lastInvoiceNumber;?>)</em> <?php echo $this->validation->invoice_number_error; ?>
+		<label><?php echo $this->lang->line('invoice_number');?> <input type="text" name="invoice_number" id="invoice_number" value="<?php echo (form_error('invoice_number')) ? (form_error('invoice_number')) : ($suggested_invoice_number);?>" /></label> 
+		<em>(<?php echo $this->lang->line('invoice_last_used') . ' ' . $lastInvoiceNumber;?>)</em> <?php echo form_error('invoice_number_error'); ?>
 	</p>
 	<p id="dateIssuedContainer">
-		<label><?php echo $this->lang->line('invoice_date_issued_full');?> <input type="text" name="dateIssued" id="dateIssued" value="<?php echo $invoiceDate; ?>"/></label><?php echo $this->validation->dateIssued_error; ?>
+		<label><?php echo $this->lang->line('invoice_date_issued_full');?> <input type="text" name="dateIssued" id="dateIssued" value="<?php echo $invoiceDate; ?>"/></label><?php echo form_error('dateIssued_error'); ?>
 	</p>
 <div id="cal1Container" style="display: none;">
 <?php echo js_calendar_write('entry_date', time(), true);?>
@@ -76,8 +76,8 @@ rest of the itemized items. -->
 </div>
 
 	<p>
-	<label><?php echo $this->lang->line('invoice_note');?> <?php echo $this->validation->invoice_note_error; ?><br />
-	<textarea name="invoice_note" id="invoice_note" cols="80" rows="3"><?php echo ($this->validation->invoice_note) ? ($this->validation->invoice_note) : ($invoice_note_default);?></textarea>
+	<label><?php echo $this->lang->line('invoice_note');?> <?php echo form_error('invoice_note_error'); ?><br />
+	<textarea name="invoice_note" id="invoice_note" cols="80" rows="3"><?php echo (form_error('invoice_note')) ? (form_error('invoice_note')) : ($invoice_note_default);?></textarea>
 	</label>
 	</p>
 	<p>

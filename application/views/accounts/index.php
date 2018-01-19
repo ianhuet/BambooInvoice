@@ -1,6 +1,7 @@
 <?php
 $this->load->view('header');
 ?>
+
 <h2><a id="top"></a><?php echo $this->lang->line('bambooinvoice_logo');?> <?php echo $page_title;?></h2>
 
 <?php if ($message != ''):?>

@@ -10,16 +10,16 @@ $this->load->view('install_update/install_header');
 
 <p><?php echo $this->lang->line('install_explain');?></p>
 
-<p style="color: #C00;"><strong><?php echo $this->validation->error_string; ?></strong></p>
+<p style="color: #C00;"><strong><?php echo form_error(error_string); ?></strong></p>
 
 <p>
 	<?php echo form_label('<span>'.$this->lang->line('login_username').'</span>', 'login_username');?> 
-	<?php echo form_input('login_username', $this->validation->login_username);?>
+	<?php echo form_input('login_username', form_error(login_username));?>
 </p>
 
 <p>
 	<?php echo form_label('<span>'.$this->lang->line('settings_primary_contact').'</span>', 'primary_contact');?> 
-	<?php echo form_input('primary_contact', $this->validation->primary_contact);?>
+	<?php echo form_input('primary_contact', form_error(primary_contact));?>
 </p>
 
 <p>

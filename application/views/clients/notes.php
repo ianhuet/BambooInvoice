@@ -8,13 +8,13 @@ $this->load->view('header');
 
 	<p>
 		<?php echo form_textarea(array(
-										'name'	=> 'client_notes',
-										'id'	=> 'client_notes',
-										'value'	=> $row->client_notes,
-										'rows' 	=> '12',
-										'cols'	=> '100',
-										'style'	=> 'width:100%',
-										)
+				'name'	=> 'client_notes',
+				'id'	=> 'client_notes',
+				'value'	=> $row->client_notes,
+				'rows' 	=> '12',
+				'cols'	=> '100',
+				'style'	=> 'width:100%',
+			)
 		);?>
 	</p>
 

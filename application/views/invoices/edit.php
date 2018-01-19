@@ -21,13 +21,13 @@ $this->load->view('header');
 	?>
 		</select></label></p>
 		<p>
-			<label><?php echo $this->lang->line('invoice_number');?> <input type="text" name="invoice_number" id="invoice_number" value="<?php echo ($this->validation->invoice_number) ? ($this->validation->invoice_number) : ($invoice_number);?>" /></label> <?php echo $this->validation->invoice_number_error;?><?php echo (isset($invoice_number_error))?'<span id="invoice_number_error" class="error">' . $this->lang->line('invoice_not_unique'). '</span>':'';?> 
-			<?php echo $this->validation->invoice_number_error; ?> 
+			<label><?php echo $this->lang->line('invoice_number');?> <input type="text" name="invoice_number" id="invoice_number" value="<?php echo (form_error('invoice_number')) ? (form_error('invoice_number')) : ($invoice_number);?>" /></label> <?php echo form_error('invoice_number_error');?><?php echo (isset($invoice_number_error))?'<span id="invoice_number_error" class="error">' . $this->lang->line('invoice_not_unique'). '</span>':'';?> 
+			<?php echo form_error('invoice_number_error'); ?> 
 			<em><?php echo $last_number_suggestion;?></em>
 		</p>
 		<p id="dateIssuedContainer">
-			<label><?php echo $this->lang->line('invoice_date_issued');?> <input type="text" name="dateIssued" id="dateIssued" value="<?php echo ($this->validation->dateIssued) ? ($this->validation->dateIssued) : ($row->dateIssued);?>"/></label>
-			<span id="dateIssuedDisplay"><?php echo date('F d, Y', mysql_to_unix(($this->validation->dateIssued) ? ($this->validation->dateIssued) : ($row->dateIssued)));?></span> <a href="#" id="changeDate" onclick="createInvoiceDate.toggle()"><?php echo $this->lang->line('actions_change');?></a>
+			<label><?php echo $this->lang->line('invoice_date_issued');?> <input type="text" name="dateIssued" id="dateIssued" value="<?php echo (form_error('dateIssued')) ? (form_error('dateIssued')) : ($row->dateIssued);?>"/></label>
+			<span id="dateIssuedDisplay"><?php echo date('F d, Y', mysql_to_unix((form_error('dateIssued')) ? (form_error('dateIssued')) : ($row->dateIssued)));?></span> <a href="#" id="changeDate" onclick="createInvoiceDate.toggle()"><?php echo $this->lang->line('actions_change');?></a>
 		</p>
 			<div id="cal1Container" style="display: none;">
 				<?php echo js_calendar_write('entry_date', time($row->dateIssued), true);?>
@@ -89,8 +89,8 @@ $this->load->view('header');
 		</div>
 
 		<p>
-			<label><?php echo $this->lang->line('invoice_note');?> <?php echo $this->validation->invoice_note_error; ?><br />
-			<textarea name="invoice_note" id="invoice_note" cols="80" rows="3"><?php echo ($this->validation->invoice_note) ? ($this->validation->invoice_note) : ($row->invoice_note);?></textarea>
+			<label><?php echo $this->lang->line('invoice_note');?> <?php echo form_error('invoice_note_error'); ?><br />
+			<textarea name="invoice_note" id="invoice_note" cols="80" rows="3"><?php echo (form_error('invoice_note')) ? (form_error('invoice_note')) : ($row->invoice_note);?></textarea>
 			</label>
 		</p>
 

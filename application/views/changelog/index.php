@@ -1,6 +1,7 @@
 <?php
 $this->load->view('header');
 ?>
+
 <h2><a id="top"></a><?php echo $this->lang->line('bambooinvoice_logo');?> <?php echo $page_title;?></h2>
 
 <div class="work_description">
@@ -15,6 +16,13 @@ $this->load->view('header');
 <?php endif;?>
 
 <h3><a id="changelog"></a><?php echo $this->lang->line('menu_changelog');?></h3>
+
+<h4>From 0.8.9 to 0.9 (Released January XX, 2018)</h4>
+
+<ul>
+	<li>Forked original project (https://github.com/derekallard/BambooInvoice) to https://github.com/ianhuet/BambooInvoice</li>
+	<li>Updated to CodeIgniter 3.1.7.</li>
+</ul>
 
 <h4>From 0.8.8 to 0.8.9 (Released April 15, 2009)</h4>
 
