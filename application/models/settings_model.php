@@ -1,6 +1,6 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class settings_model extends CI_Model {
+class Settings_model extends CI_Model {
 
 	function getCompanyInfo()
 	{
@@ -38,4 +38,3 @@ class settings_model extends CI_Model {
 	}
 
 }
-?>

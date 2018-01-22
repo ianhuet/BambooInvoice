@@ -1,5 +1,6 @@
-<?php
-class clients_model extends CI_Model {
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Clients_model extends CI_Model {
 
 	public function countAllClients()
 	{
@@ -115,4 +116,3 @@ class clients_model extends CI_Model {
 	}
 
 }
-?>

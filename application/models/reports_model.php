@@ -1,5 +1,6 @@
-<?php
-class reports_model extends CI_Model {
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Reports_model extends CI_Model {
 
 	function getDetailedData($start_date, $end_date)
 	{
@@ -48,4 +49,3 @@ class reports_model extends CI_Model {
 	}
 
 }
-?>

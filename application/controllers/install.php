@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 // for convenient removal of this page from the online demo without needing to
 // constantly remove and add this file.
@@ -14,7 +14,7 @@ class Install  extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('encrypt');
+		$this->load->library('encryption');
 		$this->load->dbutil();
 	}
 
@@ -233,7 +233,7 @@ class Install  extends MY_Controller {
 		$this->db->set('id', 1);
 		$this->db->set('client_id', 0);
 		$this->db->set('email', $admin_email);
-		$this->db->set('password', $this->encrypt->encode($admin_password));
+		$this->db->set('password', $this->encryption->encrypt($admin_password));
 		$this->db->set('last_login', time());
 		$this->db->set('access_level', 1);
 		$this->db->insert('clientcontacts');
@@ -371,12 +371,12 @@ class Install  extends MY_Controller {
 		if ($version == '0.8.7')
 		{
 			$bigger_email = array(
-				'email' => array(
-					'name' => 'email',
-					'type' => 'VARCHAR',
-					'constraint' => 127
-				),
-			);
+					'email' => array(
+						'name' => 'email',
+						'type' => 'VARCHAR',
+						'constraint' => 127
+					),
+				);
 			$this->dbforge->modify_column('clientcontacts', $bigger_email);
 
 			// add client notes field
@@ -513,7 +513,7 @@ class Install  extends MY_Controller {
 		$this->db->set('id', 1);
 		$this->db->set('client_id', 0);
 		$this->db->set('email', 'info@bambooinvoice.org');
-		$this->db->set('password', $this->encrypt->encode('demo'));
+		$this->db->set('password', $this->encryption->encrypt('demo'));
 		$this->db->set('last_login', time());
 		$this->db->set('access_level', 1);
 		$this->db->insert('clientcontacts');

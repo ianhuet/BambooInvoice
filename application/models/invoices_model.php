@@ -1,6 +1,6 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class invoices_model extends CI_Model {
+class Invoices_model extends CI_Model {
 
 	function addInvoice($invoice_data)
 	{
@@ -291,5 +291,5 @@ class invoices_model extends CI_Model {
 		{
 			return FALSE;
 		}
-	}}
-?>
+	}
+}

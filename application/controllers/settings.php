@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Settings extends MY_Controller {
 
@@ -6,9 +6,9 @@ class Settings extends MY_Controller {
 	{
 		parent::__construct();
 
+		$this->load->model('settings_model');
 		$this->load->library('form_validation');
 		$this->load->helper(array('logo', 'file', 'form', 'path'));
-		$this->load->model('settings_model');
 	}
 
 	// --------------------------------------------------------------------
@@ -17,13 +17,13 @@ class Settings extends MY_Controller {
 	{
 		$this->_validation(); // Load the validation rules and fields
 
-		$data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"". base_url()."js/glider.js\"></script>\n";
-		$data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"". base_url()."js/settings.js\"></script>\n";
-		$data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/settings.css\" />\n";
+		$data['extraHeadContent']  = "<script type=\"text/javascript\" src=\"". base_url() ."js/glider.js\"></script>\n";
+		$data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"". base_url() ."js/settings.js\"></script>\n";
+		$data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url() ."css/settings.css\" />\n";
 
 		$data['company_logo'] = get_logo($this->settings_model->get_setting('logo'));
 
-		if ( ! $this->form_validation->run())
+		if ($this->form_validation->run() === false)
 		{
 			// if company_name was submitted, but we're here in the failed validation statement, then it means there were errors
 			if ($this->input->post('company_name'))
@@ -97,7 +97,7 @@ class Settings extends MY_Controller {
 			// run the update
 			$update_settings = $this->settings_model->update_settings($data);
 
-			if ($this->db->affected_rows() == 1 OR $update_settings === TRUE)
+			if ($this->db->affected_rows() == 1 || $update_settings === TRUE)
 			{
 				$this->load->model('clientcontacts_model');
 
@@ -141,7 +141,7 @@ class Settings extends MY_Controller {
 		$this->form_validation->set_rules('website', $this->lang->line('clients_website'), "trim|prep_for_form|max_length[150]");
 		$this->form_validation->set_rules('primary_contact', $this->lang->line('settings_primary_contact'), "trim|prep_for_form|required|max_length[75]");
 		$this->form_validation->set_rules('primary_contact_email', $this->lang->line('settings_primary_email'), "trim|prep_for_form|required|max_length[50]|valid_email");
-		$this->form_validation->set_rules('password', $this->lang->line('login_password'), "min_length[4]|max_length[50]|alpha_dash");
+		$this->form_validation->set_rules('password', $this->lang->line('login_password'), "min_length[4]|max_length[50]");
 		$this->form_validation->set_rules('password_confirm', $this->lang->line('login_password_confirm'), "matches[password]");
 		$this->form_validation->set_rules('logo', $this->lang->line('settings_logo'), "trim|prep_for_form|max_length[50]");
 		$this->form_validation->set_rules('invoice_note_default', $this->lang->line('settings_default_note'), "trim|prep_for_form|max_length[2000]");

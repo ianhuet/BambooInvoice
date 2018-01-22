@@ -1,5 +1,6 @@
-<?php
-class invoice_histories_model extends CI_Model {
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Invoice_histories_model extends CI_Model {
 
 	/*
 	 * Insert History / Notes
@@ -14,12 +15,12 @@ class invoice_histories_model extends CI_Model {
 	function insert_history_note($invoice_id, $history_body, $clientcontacts_id = '', $contact_type = 1)
 	{
 		$historyInfo = array(
-							'invoice_id' => $invoice_id,
-							'clientcontacts_id' => serialize($clientcontacts_id),
-							'date_sent' => date("Y-m-d"),
-							'contact_type' => $contact_type,
-							'email_body' => $history_body
-							);
+			'invoice_id' => $invoice_id,
+			'clientcontacts_id' => serialize($clientcontacts_id),
+			'date_sent' => date("Y-m-d"),
+			'contact_type' => $contact_type,
+			'email_body' => $history_body
+		);
 
 		$this->db->insert('invoice_histories', $historyInfo);
 
@@ -33,4 +34,3 @@ class invoice_histories_model extends CI_Model {
 		$this->insert_history_note($invoice_id, $note, '', 2);
 	}
 }
-?>

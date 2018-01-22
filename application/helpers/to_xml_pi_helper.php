@@ -59,7 +59,12 @@ class Xmlwriter4 {
     var $xml;
     var $indent;
     var $stack = array();
-    function Xmlwriter4($indent = '   ') {
+
+
+    // function Xmlwriter4($indent = '   ') {
+    public function __construct($indent = '   ')
+	{
+		parent::__construct();    
         $this->indent = $indent;
         $this->xml = '<?xml version="1.0" encoding="utf-8"?>'."\r\n";
     }

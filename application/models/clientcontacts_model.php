@@ -1,5 +1,6 @@
-<?php
-class clientcontacts_model extends CI_Model {
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Clientcontacts_model extends CI_Model {
 
 	function get_admin_contacts()
 	{
@@ -13,14 +14,14 @@ class clientcontacts_model extends CI_Model {
 	function addClientContact($client_id, $first_name, $last_name, $email, $phone = '', $title = '', $access_level = 0)
 	{
 		$contact_info = array(
-							'client_id' => (int) $client_id,
-							'first_name' => $first_name,
-							'last_name' => $last_name,
-							'email' => $email,
-							'phone' => $phone,
-							'title' => $title,
-							'access_level' => $access_level
-							);
+			'client_id' => (int) $client_id,
+			'first_name' => $first_name,
+			'last_name' => $last_name,
+			'email' => $email,
+			'phone' => $phone,
+			'title' => $title,
+			'access_level' => $access_level
+		);
 
 		$this->db->insert('clientcontacts', $contact_info);
 
@@ -32,14 +33,14 @@ class clientcontacts_model extends CI_Model {
 	function editClientContact($id, $client_id, $first_name, $last_name, $email, $phone = '', $title = '', $access_level = 0)
 	{
 		$contact_info = array(
-							'client_id' => (int) $client_id,
-							'first_name' => $first_name,
-							'last_name' => $last_name,
-							'email' => $email,
-							'phone' => $phone,
-							'title' => $title,
-							'access_level' => $access_level
-							);
+			'client_id' => (int) $client_id,
+			'first_name' => $first_name,
+			'last_name' => $last_name,
+			'email' => $email,
+			'phone' => $phone,
+			'title' => $title,
+			'access_level' => $access_level
+		);
 
 		$this->db->where('id', (int) $id);
 		$this->db->update('clientcontacts', $contact_info);
@@ -149,10 +150,8 @@ class clientcontacts_model extends CI_Model {
 
 	function password_change($id, $new_password)
 	{
-		$this->load->library('encrypt');
-
 		$this->db->where('id', $id);
-		$this->db->set('password', $this->encrypt->encode($new_password));
+		$this->db->set('password', password_hash($new_password, PASSWORD_DEFAULT));
 		$this->db->update('clientcontacts');
 
 		$this->db->where('id', $id);
@@ -190,4 +189,3 @@ class clientcontacts_model extends CI_Model {
 	}
 
 }
-?>

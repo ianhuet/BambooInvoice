@@ -37,12 +37,9 @@ class Site_sentry
 
 	public function login_routine()
 	{
-		//Initialise the Encryption Library
-		$this->obj->load->library('encrypt');
-
 		//Make the input username and password into variables
-		$password = $this->obj->input->post('password');
 		$username = $this->obj->input->post('username');
+		$password = $this->obj->input->post('password');
 
 		//Use the input username and password and check against 'users' table
 		$this->obj->db->where('access_level != 0');
@@ -51,7 +48,7 @@ class Site_sentry
 		$login_result = FALSE;
 		foreach($query->result() as $row)
 		{
-			if($row->email == $username && $this->obj->encrypt->decode("$row->password") == $password && $row->access_level !=0)
+			if($row->email == $username && password_verify($password, $row->password) && $row->access_level !=0)
 			{
 				$login_result = TRUE;
 				$id = $row->id;

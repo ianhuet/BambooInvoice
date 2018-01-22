@@ -1,5 +1,6 @@
-<?php
-class utilities_model extends CI_Model {
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Utilities_model extends CI_Model {
 
 	function _version_check()
 	{
@@ -53,6 +54,4 @@ class utilities_model extends CI_Model {
 		}
 	}
 
-
 }
-?>
