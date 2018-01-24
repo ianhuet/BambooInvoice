@@ -1,6 +1,7 @@
 # ignore Mac files
 .DS_store
 
+./*.log
 ./*.sql
 
 # ignore .vagrant folder

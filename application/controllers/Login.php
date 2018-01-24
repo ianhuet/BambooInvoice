@@ -163,14 +163,15 @@ class Login extends MY_Controller {
 	  * a MAJOR security breach.
 	  */ 
 
-	function force_demo_password()
-	{
-		$this->load->model('clientcontacts_model');
+	// function force_demo_password()
+	// {
+	// 	$this->load->model('clientcontacts_model');
 
-		$this->clientcontacts_model->password_change(1, 'demo');
-		$data['msg'] = 'Password reset to ' . $this->uri->segment(3, 'demo') . '. Now comment out or delete the function again.<br />' . anchor('login', 'login');
-		$data['page_title'] = $this->lang->line('login_forgot_password');
+	// 	$this->clientcontacts_model->password_change(1, 'demo');
+	// 	$data['msg'] = 'Password reset to ' . $this->uri->segment(3, 'demo') . '. Now comment out or delete the function again.<br />' . anchor('login', 'login');
+	// 	$data['page_title'] = $this->lang->line('login_forgot_password');
 
-		$this->load->view('login/login_password_message', $data);
-	}
+	// 	$this->load->view('login/login_password_message', $data);
+	// }
+
 }

@@ -263,8 +263,8 @@ class Invoices extends MY_Controller {
 	function view($id)
 	{
 		$this->lang->load('date');
-		$this->load->plugin('js_calendar');
 		$this->load->helper('file');
+		$this->load->helper('js_calendar_pi');
 
 		$data['message'] = ($this->session->flashdata('message') != '') ? $this->session->flashdata('message') : '';
 
@@ -716,8 +716,8 @@ class Invoices extends MY_Controller {
 	function pdf($id, $output = TRUE)
 	{
 		$this->lang->load('date');
-		$this->load->plugin('to_pdf');
 		$this->load->helper('file');
+		$this->load->helper('to_pdf_pi');
 
 		$data['page_title'] = $this->lang->line('menu_invoices');
 

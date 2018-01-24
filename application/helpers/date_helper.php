@@ -215,14 +215,12 @@ function mysql_to_unix($time = '')
 	$time = str_replace(' ', '', $time);
 
 	// YYYYMMDDHHMMSS
-	return	mktime(
-					substr($time, 8, 2),
-					substr($time, 10, 2),
-					substr($time, 12, 2),
-					substr($time, 4, 2),
-					substr($time, 6, 2),
-					substr($time, 0, 4)
-					);
+	return mktime(
+		(int)substr($time, 8, 2),
+		(int)substr($time, 10, 2),
+		(int)substr($time, 12, 2),
+		(int)substr($time, 4, 2),
+		(int)substr($time, 6, 2),
+		(int)substr($time, 0, 4)
+	);
 }
-
-?>
