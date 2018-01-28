@@ -1,0 +1,114 @@
+a:2:{s:6:"expire";i:1516366616;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
+<html>
+<head>
+<title>BambooInvoice: Help</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="author" content="Derek Allard - http://www.derekallard.com. Upgrade by Ian Huet. www.github.com/ianhuet" />
+<meta name="description" content="BambooInvoice : Simple, Open Source, Online Invoicing" />
+<meta name="keywords" content="BambooInvoice, Online Invoicing" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="rating" content="general" />
+<meta name="language" content="" />
+<meta name="copyright" content="Copyright (c) 2018 Derek Allard" />
+
+<link rel="shortcut icon" href="http://localhost:9999/favicon.ico" type="image/ico" />
+<link type="text/css" rel="stylesheet" href="http://localhost:9999/css/bamboo.css" />
+<link type="text/css" rel="stylesheet" href="http://localhost:9999/css/lightbox.css" />
+<link type="text/css" rel="stylesheet" media="print" href="http://localhost:9999/css/bamboo_print.css" />
+
+<script type="text/javascript" src="http://localhost:9999/js/bamboo.js"></script>
+<script type="text/javascript" src="http://localhost:9999/js/prototype.js"></script>
+<script type="text/javascript" src="http://localhost:9999/js/lightbox.js"></script>
+<script type="text/javascript" src="http://localhost:9999/js/scriptaculous/scriptaculous.js?load=effects,dragdrop"></script>
+<script type="text/javascript">
+	base_url = "http://localhost:9999/index.php/";
+	base_url_no_index = "http://localhost:9999/";
+	bi_currency_symbol = new String("€");
+	lang_invoice_date_issued = new String("Date Issued ");
+	lang_invoice_change = new String("Change");
+	lang_amount_error = new String("Please enter an amount");
+	lang_delete = new String("Delete");
+	lang_edit = new String("Edit");
+	lang_numbers_only = new String("Numbers only please");
+	lang_field_required = new String("This field is required");
+	lang_clients_contact_add = new String("Unable to add this contact. Please note that First Name, Last Name and a valid email are required.");
+	lang_error_email_recipients = new String("Please select at least 1 recipient for this invoice");
+	lang_error_login_username = new String("Provide a username please");
+	lang_error_login_password = new String("Provide a password please");
+	lang_invoice = new String("Invoice");
+	lang_client_name = new String("Client Name");
+	lang_amount = new String("Amount");
+	lang_status = new String("Status");
+	lang_quantity = new String("Quantity");
+	lang_work_description = new String("Work Description");
+	lang_taxable = new String("Taxable");
+	lang_amount = new String("Amount");
+</script>
+</head>
+<body>
+<div id="allHolder">
+	<div id="container">
+		<div id="masthead">
+
+			<h1 id="bamboo_logo"><a href="http://localhost:9999/index.php"><span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span></a></h1>
+
+						<ul id="submenu">
+				<li><a href="http://localhost:9999/index.php/help" class="submenu_link help">Help</a></li>
+				<li><a href="http://localhost:9999/index.php/logout/confirm" class="submenu_link logout lbOn">Logout</a></li>
+			</ul>
+			
+		</div>
+
+		<div id="invoice_action_menu">
+		<ul>
+
+		
+			<li><a href="http://localhost:9999/index.php" class="dashboard">Root System</a></li>
+			<li><a href="http://localhost:9999/index.php/invoices" class="summaryinv">Invoice Summary</a></li>
+
+			
+			
+		
+		</ul>
+		<p id="tip"><strong>Did you know?</strong><br />A single stem of bamboo from an established root system typically reaches full height in just one year!</p>		</div>
+		<div id="main_content">
+
+		<h2><a id="top"></a><span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span> Help</h2>
+
+<div class="work_description">
+	<p>
+		<strong>See Also:</strong><br />
+		<a href="http://localhost:9999/index.php/credits">Credits</a> | <a href="http://localhost:9999/index.php/changelog">Change Log</a>	</p>
+</div>
+
+
+<p>There are forums available for support at <a href="http://forums.bambooinvoice.org">forums.bambooinvoice.org</a>. Come and share your thoughts and chat. </p>
+
+<ul>
+	<li><a href="#q1">What is the difference between &quot;open&quot;, &quot;overdue&quot;, &quot;closed&quot; and &quot;all&quot; invoices?</a></li>
+	<li><a href="#q2">How much does <span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span> cost?</a></li>
+	<li><a href="#credits">Who built <span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span>?</a></li>
+	<li><a href="#q4">Can I control the look of my invoices?</a></li>
+</ul>
+
+<h3><a id="faq"></a>Frequently Asked Questions</h3>
+
+<ul>
+	<li><a id="q1"></a><strong>What is the difference between &quot;open&quot;, &quot;overdue&quot;, &quot;closed&quot; and &quot;all&quot; invoices?</strong><br />
+	Open invoices are invoices for which you have not received payment, but it has been less then 30 days. Overdue invoices have not been paid in over 30 days. Closed invoices have been paid. All is simply a listing of every invoice you've issued. [ <a href="#top">back to top</a> ] </li>
+	<li><a id="q2"></a><strong>How much does <span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span> cost? </strong><br />
+	There is no cost to use this application for any reason. It is free as in speech, and free as in <a href="http://www.millstreetbrewery.com/">beer</a>  <span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span> is released under the <a href="http://www.gnu.org/copyleft/gpl.html"><acronym title="GNU Public License">GPL</acronym></a>. [ <a href="#top">back to top</a> ] </li>
+	<li><a id="q4"></a><strong>Can I control the look of my invoices?</strong><br />
+	Currently, the look of the <acronym title="Portable Document Format">PDF</acronym> file is <em>easily</em> changed.  If you can write <acronym title="Extensible Hypertext Markup Language">XHTML</acronym>, then you can alter your invoice.  The look of the onscreen invoice would require a bit of code hacking... but even that's very straight forward! [ <a href="#top">back to top</a> ] </li>
+</ul>
+
+<p>[ <a href="#top">back to top</a> ] </p>
+
+			<div id="footer">
+				<p><a href="http://localhost:9999/index.php/donate" id="donate">Donate</a> | <a href="http://bambooinvoice.org" title="BambooInvoice"><span class='bamboo_invoice_bam'>Bamboo</span><span class='bamboo_invoice_inv'>Invoice</span></a> &copy; 2018 (Version 0.8.9)</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
