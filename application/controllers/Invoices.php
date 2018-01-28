@@ -157,7 +157,7 @@ class Invoices extends MY_Controller {
 	function newinvoice()
 	{
 		$this->load->library('form_validation');
-		$this->load->helper('js_calendar_pi');
+		$this->load->helper('js_calendar');
 
 		// check if it came from a post, or has a session of clientId
 		$id = ($this->input->post('client_id') != '') ? $this->input->post('client_id') : $this->session->flashdata('clientId');
@@ -264,7 +264,7 @@ class Invoices extends MY_Controller {
 	{
 		$this->lang->load('date');
 		$this->load->helper('file');
-		$this->load->helper('js_calendar_pi');
+		$this->load->helper('js_calendar');
 
 		$data['message'] = ($this->session->flashdata('message') != '') ? $this->session->flashdata('message') : '';
 
@@ -717,7 +717,7 @@ class Invoices extends MY_Controller {
 	{
 		$this->lang->load('date');
 		$this->load->helper('file');
-		$this->load->helper('to_pdf_pi');
+		$this->load->helper('to_pdf');
 
 		$data['page_title'] = $this->lang->line('menu_invoices');
 
