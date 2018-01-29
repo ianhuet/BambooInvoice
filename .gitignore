@@ -1,6 +1,7 @@
 # Folders         #
 ###################
 **/node_modules
+**/bamboo_backup
 .vagrant
 
 # Compiled source #
