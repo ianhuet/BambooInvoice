@@ -338,8 +338,8 @@ class Invoices extends MY_Controller {
 
 	function edit($id)
 	{
-		$this->load->library('validation');
-		$this->load->plugin('js_calendar');
+		$this->load->library('form_validation');
+		$this->load->helper('js_calendar');
 
 		// grab invoice info
 		$data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
@@ -449,8 +449,8 @@ class Invoices extends MY_Controller {
 
 	function duplicate($id)
 	{
-		$this->load->library('validation');
-		$this->load->plugin('js_calendar');
+		$this->load->library('form_validation');
+		$this->load->helper('js_calendar');
 
 		// grab invoice info
 		$data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
