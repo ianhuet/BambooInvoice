@@ -8,19 +8,19 @@ $this->load->view('header');
 series. It is outside the form, and thus will not submit (as an empty item) with the 
 rest of the itemized items. -->
 <div id="itemized_invoice_node" style="display: none;">
-<p><label><?php echo $this->lang->line('invoice_item');?> <input type="text" class="item" name="item" size="40" /></label> <label><?php echo $this->lang->line('invoice_quantity');?> <input type="text" class="quantity" name="quantity" size="5" value="1" onblur="recalculate_items();" /></label> <label><?php echo $this->lang->line('invoice_amount');?> <?php echo $this->settings_model->get_setting('currency_symbol');?><input type="text" class="amount" name="amount" size="5" value="0.00" onblur="recalculate_items();" /></label></p>
+	<p><label><?php echo $this->lang->line('invoice_item');?> <input type="text" class="item" name="item" size="40" /></label> <label><?php echo $this->lang->line('invoice_quantity');?> <input type="text" class="quantity" name="quantity" size="5" value="1" onblur="recalculate_items();" /></label> <label><?php echo $this->lang->line('invoice_amount');?> <?php echo $this->settings_model->get_setting('currency_symbol');?><input type="text" class="amount" name="amount" size="5" value="0.00" onblur="recalculate_items();" /></label></p>
 </div>
 
 <?php echo form_open('invoices/newinvoice', array('id' => 'createInvoice', 'name' => 'my_form', 'autocomplete' => 'off'));?>
 	<input type="hidden" name="client_id" value="<?php echo $row->id;?>" />
-<?php if ($row->tax_status):?>
-	<input type="hidden" name="tax1_description" value="<?php echo $tax1_desc;?>" />
-	<input type="hidden" name="tax1_rate" value="<?php echo $tax1_rate;?>" />
-	<input type="hidden" name="tax2_description" value="<?php echo $tax2_desc;?>" />
-	<input type="hidden" name="tax2_rate" value="<?php echo $tax2_rate;?>" />
-<?php endif;?>
+	<?php if ($row->tax_status):?>
+		<input type="hidden" name="tax1_description" value="<?php echo $tax1_desc;?>" />
+		<input type="hidden" name="tax1_rate" value="<?php echo $tax1_rate;?>" />
+		<input type="hidden" name="tax2_description" value="<?php echo $tax2_desc;?>" />
+		<input type="hidden" name="tax2_rate" value="<?php echo $tax2_rate;?>" />
+	<?php endif;?>
 	<p>
-		<label><?php echo $this->lang->line('invoice_number');?> <input type="text" name="invoice_number" id="invoice_number" value="<?php echo (form_error('invoice_number')) ? (form_error('invoice_number')) : ($suggested_invoice_number);?>" /></label> 
+		<label><?php echo $this->lang->line('invoice_number');?> <input type="text" name="invoice_number" id="invoice_number" value="<?php echo $suggested_invoice_number ?>" /> <?php echo (form_error('invoice_number')) ? (form_error('invoice_number')) : ($suggested_invoice_number);?></label> 
 		<em>(<?php echo $this->lang->line('invoice_last_used') . ' ' . $lastInvoiceNumber;?>)</em> <?php echo form_error('invoice_number_error'); ?>
 	</p>
 	<p id="dateIssuedContainer">

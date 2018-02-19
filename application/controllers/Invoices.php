@@ -572,7 +572,7 @@ class Invoices extends MY_Controller {
 	function email($id)
 	{
 		$this->lang->load('date');
-		$this->load->plugin('to_pdf');
+		$this->load->helper('to_pdf');
 		$this->load->helper(array('logo', 'file'));
 		$this->load->library('email');
 		$this->load->model('clientcontacts_model');
@@ -625,21 +625,19 @@ class Invoices extends MY_Controller {
 			show_error($this->lang->line('error_problem_saving'));
 		}
 		// @todo: get PDF generation to only happen in one place..., the pdf() function
-//		$invoice_number = $this->pdf($id, FALSE);
+		// $invoice_number = $this->pdf($id, FALSE);
 
 		$recipients = $this->input->post('recipients');
 
 		if ($recipients == '') {show_error($this->lang->line('invoice_email_no_recipient'));} // a rather rude reminder to include a recipient in case js is disabled
 
-		$recipient_emails = '';
-
+		$recipient_emails = Array();
 		foreach($recipients as $recipient)
 		{
 			($recipient == 1) ? $recipient_emails[] .= $from_email : $recipient_emails[] .= $this->clientcontacts_model->getContactInfo($recipient)->email;
 		}
 
-		$recipient_names = '';
-
+		$recipient_names = Array();
 		foreach($recipients as $recipient)
 		{
 			if ($recipient == 1)
