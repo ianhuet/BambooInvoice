@@ -298,7 +298,7 @@ class Invoices extends MY_Controller {
 		else
 		{
 			// owing more then 30 days
-			$due_date = $data['row']->dateIssued + ($this->settings_model->get_setting('days_payment_due') * 60*60*24); 
+			$due_date = strtotime($data['row']->dateIssued) + ($this->settings_model->get_setting('days_payment_due') * 60*60*24); 
 			$data['status'] = '<span class="error">'.timespan(mysql_to_unix($data['row']->dateIssued) + ($this->settings_model->get_setting('days_payment_due') * 60*60*24), now()). ' '.$this->lang->line('invoice_overdue').'</span>';
 		}
 
