@@ -78,14 +78,14 @@ $this->load->view('header');
 		</div>
 
 		<div class="amount_listing">
-			<p><?php echo $this->lang->line('invoice_amount');?> <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_amount">0.00</span></p>
+			<p><?php echo $this->lang->line('invoice_amount');?>: <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_amount">0.00</span></p>
 			<?php if ($row->tax1_rate > 0):?>
-			<p><?php echo $row->tax1_desc;?> (<?php echo $row->tax1_rate;?>%) <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_tax1amount">0.00</span></p>
+			<p><?php echo $row->tax1_desc;?> (<?php echo $row->tax1_rate;?>%): <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_tax1amount">0.00</span></p>
 			<?php endif;?>
 			<?php if ($row->tax2_rate > 0):?>
-			<p><?php echo $row->tax2_desc;?> (<?php echo $row->tax2_rate;?>%) <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_tax2amount">0.00</span></p>
+			<p><?php echo $row->tax2_desc;?> (<?php echo $row->tax2_rate;?>%): <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_tax2amount">0.00</span></p>
 			<?php endif;?>
-			<p><?php echo $this->lang->line('invoice_total');?> <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_total_amount">0.00</span></p>
+			<p><?php echo $this->lang->line('invoice_total');?>: <?php echo $this->settings_model->get_setting('currency_symbol');?><span id="item_total_amount">0.00</span></p>
 		</div>
 
 		<p>

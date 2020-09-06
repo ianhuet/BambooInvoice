@@ -31,6 +31,9 @@ echo 'Bam'.'boo'.'In'.'voice'; // this is like this so that nobody can get it by
 	Derek Allard (http://derekallard.com)
 */
 echo ': '.$page_title;
+
+$this->load->helper('view_helper');
+
 ?></title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="author" content="Derek Allard - http://www.derekallard.com. Upgrade by Ian Huet. www.github.com/ianhuet" />
@@ -115,7 +118,7 @@ echo ': '.$page_title;
 			<?php if (isset($invoiceOptions)): ?>
 				<li id="invnoteli"><a class="invnote" href="javascript:void(0);" onclick="Effect.BlindDown('private_note_form', {duration: '0.4'});"><?php echo $this->lang->line('menu_private_note');?></a></li>
 
-				<?php if ($row->amount_paid < $row->total_with_tax): ?>
+				<?php if (is_invoice_complete($row)): ?>
 					<li id="invpayli"><a class="invpayment" href="javascript:void(0);" onclick="Effect.BlindDown('enterPayment', {duration: '0.4'});"><?php echo $this->lang->line('menu_enter_payment');?></a></li>
 				<?php endif; ?>
 
@@ -124,7 +127,7 @@ echo ': '.$page_title;
 				<li><?php echo anchor('invoices/pdf/' . $row->id, $this->lang->line('menu_generate_pdf'), array('class' => 'emailpdf'));?></li>
 				<li id="invprintli"><?php echo anchor('', $this->lang->line('menu_print_invoice'), array('class' => 'invprint', 'onclick' => 'print(); return false;'));?></li>
 
-				<?php if ($row->amount_paid < $row->total_with_tax): ?>
+				<?php if (!is_invoice_complete($row)): ?>
 					<li><?php echo anchor('invoices/edit/'.$row->id, $this->lang->line('menu_edit_invoice'), array('class' => 'invedit'));?></li>
 				<?php endif; ?>
 

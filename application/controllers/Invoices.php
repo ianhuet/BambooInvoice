@@ -265,6 +265,7 @@ class Invoices extends MY_Controller {
 		$this->lang->load('date');
 		$this->load->helper('file');
 		$this->load->helper('js_calendar');
+		$this->load->helper('view_helper');
 
 		$data['message'] = ($this->session->flashdata('message') != '') ? $this->session->flashdata('message') : '';
 
@@ -285,15 +286,15 @@ class Invoices extends MY_Controller {
 		$data['date_invoice_issued'] = formatted_invoice_date($data['row']->dateIssued);
 		$data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, $this->settings_model->get_setting('days_payment_due'));
 
-		if ($data['row']->amount_paid >= $data['row']->total_with_tax)
+		if (is_invoice_complete($data['row']))
 		{
 			// paid invoices
-			$data['status'] = '<span>'.$this->lang->line('invoice_closed').'</span>';
+			$data['status'] = $this->lang->line('invoice_closed');
 		}
 		elseif (mysql_to_unix($data['row']->dateIssued) >= time()-($this->settings_model->get_setting('days_payment_due') * 60*60*24))
 		{
 			// owing less then 30 days
-			$data['status'] = '<span>'.$this->lang->line('invoice_open').'</span>';
+			$data['status'] = $this->lang->line('invoice_open');
 		}
 		else
 		{
@@ -305,11 +306,11 @@ class Invoices extends MY_Controller {
 		$data['items'] = $this->invoices_model->getInvoiceItems($id);
 
 		// begin amount and taxes
-		$data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+		$data['total_no_tax'] =  $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
 		$data['tax_info'] = $this->_tax_info($data['row']);
 
-		$data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";;
+		$data['total_with_tax'] =  $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";;
 		// end amount and taxes
 
 		if ($data['row']->amount_paid > 0)
@@ -375,9 +376,16 @@ class Invoices extends MY_Controller {
 			$data['items'] = $this->invoices_model->getInvoiceItems($id);
 
 			// begin amount and taxes
-			$data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+			$data['total_no_tax'] = 
+				$this->lang->line('invoice_amount') .': '. 
+				$this->settings_model->get_setting('currency_symbol') .
+				number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '') .
+				"<br />\n";
 			$data['tax_info'] = $this->_tax_info($data['row']);
-			$data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
+			$data['total_with_tax'] = 
+				$this->lang->line('invoice_total') .': '.
+				$this->settings_model->get_setting('currency_symbol') .
+				number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
 			// end amount and taxes
 
 			$this->load->view('invoices/edit', $data);

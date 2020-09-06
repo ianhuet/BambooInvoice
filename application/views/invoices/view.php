@@ -26,7 +26,7 @@ if ($message != ''):
 
 <?php
 // only show enterPayment if the invoice isn't fully paid up yet...
-if ($row->amount_paid < $row->total_with_tax):
+if (!is_invoice_complete($row)):
 ?>
 
 	<?php echo form_open('invoices/payment', array('id' => 'enterPayment', 'name' => 'enterPayment'), array('id'=>$row->id));?>
@@ -176,7 +176,7 @@ if ($row->amount_paid < $row->total_with_tax):
 	<p>
 		<?php echo $total_no_tax;?>
 		<?php echo $tax_info;?>
-		<?php echo $total_with_tax;?>
+		<?php echo $total_with_tax; ?>
 		<?php echo $total_paid;?>
 		<?php echo $total_outstanding;?>
 	</p>
